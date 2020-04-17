@@ -80,7 +80,9 @@ Unfortunately there are quite a few problems visually
 - [ ] self location with `navigator` and then use reverse geocode to get address
 
 ### Research
-- [ ] using raw images over base64
+- [x] using raw images over base64
+    - I looked into this with regard to using BLOBs it is much harder to code for regarding stream juggling
+      also using `createObjectURL` has really bad quality
 - [ ] dynamic proxy based on environment, may be tied to build script altready in `package.json`
 - [ ] the mockup didn't show other options for address like state/zip so I guess it's just for KC?
 - [ ] better way with dealing collapsing height due to device soft keyboard
