@@ -3,13 +3,10 @@ export const deleteAddress = (props, addressObj, finishedDeletingAddress) => {
     const addressId = addressObj.addressId;
     let backupDelFailTimer;
 
-    console.log(addressId);
-
     const doneDeleting = () => {
         clearTimeout(backupDelFailTimer);
-        // finished deleting, go back to main addresses view
         alert('Address deleted! Redirecting...');
-        finishedDeletingAddress();
+        finishedDeletingAddress(addressObj);
     }
 
     // these are asynchronous events so when one finishes it calls the next
@@ -93,14 +90,14 @@ export const deleteAddress = (props, addressObj, finishedDeletingAddress) => {
                     addresses.delete() // should only be one
                         .then(() => {
                             console.log('address deleted');
-                            doneDeleting(dbOpened);
+                            doneDeleting();
                         })
                         .catch((err) => {
                             alert('Failed to delete address');
                             console.log('delete address', err);
                         });
                 } else {
-                    doneDeleting(dbOpened);
+                    doneDeleting();
                 }
             })
             .catch((err) => {

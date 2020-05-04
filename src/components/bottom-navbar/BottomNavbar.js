@@ -94,8 +94,14 @@ const BottomNavbar = (props) => {
     }
 
     // this function is called after the delete process is done
-    const finishedDeletingAddress = () => {
+    const finishedDeletingAddress = (addressObj) => {
+        // finished deleting, go back to main addresses view
         setDeletingAddress(false);
+        if (Object.keys(addressObj).length) {
+            const tmpArr = props.deletedAddresses;
+            tmpArr.push(addressObj.address); // the primary "key" is the address string
+            props.setDeletedAddresses(tmpArr);
+        }
         history.push("/addresses");
     }
 

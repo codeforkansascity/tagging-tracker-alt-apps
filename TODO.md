@@ -22,7 +22,8 @@
 - [ ] put a warning first time opening big picture(from thumbnail click) that it will use data
 
 ### Add in way to delete addresses
-- [ ] this should delete all related data as well eg. the tags, tagInfo, ownerInfo
+- [x] this should delete all related data as well eg. the tags, tagInfo, ownerInfo
+- [x] also delete on remote side, so track what was deleted client side, update sync up, has to explicitly be from delete not empty client
 
 ### UX
 - [ ] typing into login field seems whack, probably due to state being tied to `onKeyUp`
