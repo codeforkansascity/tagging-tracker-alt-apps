@@ -9,13 +9,15 @@ Dang this one is unfortunatetly brutal despite how simple it seems.
 - [ ] sort photos by date
     - [ ] need to update tag schema to include datetime
         - [ ] update client side
-            - [ ] Dexie update
+            - [x] Dexie update
                 - it has timestamp field already, I think it was a lazy attempt for unique file names.
             - [ ] sync process
         - [ ] update API
             - [ ] update table schema
             - [ ] update methods eg. insert/query responses...
-    - [ ] sort by descending date sort probably have to use `new Date()` or something
+    - [x] sort by descending date sort probably have to use `new Date()` or something
+    - [ ] fix the switch/unfinished datetime to timestamp
+        - timestamp never synced with client side it was just a way to delete uniquely selected photos since the same photo/same filename could be uploaded so don't know which photo to delete. This is in `EditTags.js`
 - [ ] bottom navbar
     - [ ] Owner Info `->` Edit Event
         - [ ] Edit Event shows list of events

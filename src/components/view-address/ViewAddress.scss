@@ -36,3 +36,16 @@
         margin-right: 0.25rem;
     }
 }
+
+.tagging-tracker__view-address-tag-date-group {
+    width: 100%;
+    padding: 0.5rem;
+
+    &:not(:first-of-type) {
+        margin-top: 0.5rem;
+    }
+
+    span {
+        font-weight: bold;
+    }
+}

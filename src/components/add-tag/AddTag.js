@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import './AddTag.scss';
 import BottomNavbar from './../../components/bottom-navbar/BottomNavbar';
 import axios from 'axios';
-import { getTimeStamp } from './../../utils/date';
+import { getDateTime, formatTimeStr } from './../../utils/date';
 
 /**
  * Brief explanation how this works it's kind of confusing since everything is a callback of a callback
@@ -90,7 +90,7 @@ const AddTag = (props) => {
                         src: loadedPhoto.src,
                         thumbnail_src: thumbnailSrc,
                         meta: loadedPhoto.meta,
-                        timestamp: getTimeStamp()
+                        datetime: formatTimeStr(getDateTime()) // makes YYYY-MM-DD HH:MM:SS format for MySQL DateTime
                     }).then((insertedId) => {
                         return true;
                     })
