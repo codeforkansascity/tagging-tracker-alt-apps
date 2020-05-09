@@ -45,7 +45,7 @@ const ViewAddress = (props) => {
             });
         }
         
-        if (localImages) {
+        if (localImages && Object.keys(localImages).length) {
             // I was contemplating where to do this but the tags have to get grouped by date
             const tagsGroupedByDate = {};
             
