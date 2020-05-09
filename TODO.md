@@ -1,3 +1,8 @@
+### Most recent
+- [ ] investigate warning wall "Dexie delete local database blocked" when logging out, purges local cache
+    - this isn't a huge deal since will replace with RN
+    - it also occurs in a split second/think it's a "too fast/double call" thingj
+
 ### GitHub Pages deployment
 - [ ] consider better way eg. a dedicated repo or some kind of build process
 

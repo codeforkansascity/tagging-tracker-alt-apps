@@ -78,6 +78,7 @@ const updateLocalAddresses = (props, remoteData) => {
 }
 
 const updateLocalTags = (props, remoteData) => {
+    console.log(remoteData);
     const offlineStorage = props.offlineStorage;
     return new Promise(resolve => {
         if (!remoteData.tags) {
@@ -92,7 +93,8 @@ const updateLocalTags = (props, remoteData) => {
                         addressId: tagRow.address_id,
                         fileName: tagMeta.name,
                         thumbnail_src: tagRow.thumbnail_src,
-                        meta: tagMeta
+                        meta: tagMeta,
+                        datetime: tagRow.datetime
                     }).then((insertedId) => {
                         return true;
                     })
