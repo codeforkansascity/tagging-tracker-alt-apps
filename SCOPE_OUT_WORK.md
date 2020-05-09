@@ -7,17 +7,17 @@ I think I have to condense `Edit/Add Events` to one button since there is a `Del
 #### Address screen
 Dang this one is unfortunatetly brutal despite how simple it seems.
 - [ ] sort photos by date
-    - [ ] need to update tag schema to include datetime
-        - [ ] update client side
+    - [x] need to update tag schema to include datetime
+        - [x] update client side
             - [x] Dexie update
                 - it has timestamp field already, I think it was a lazy attempt for unique file names.
-            - [ ] sync process
+            - [x] sync process
                 - `App.js` `Dexie` schema with new `datetime` field to persist
                 - sync up
                 - sync down
-        - [ ] update API
-            - [ ] update table schema
-            - [ ] update methods eg. insert/query responses...
+        - [x] update API
+            - [x] update table schema
+            - [x] update methods eg. insert/query responses...
     - [x] sort by descending date sort probably have to use `new Date()` or something
     - [ ] fix the switch/unfinished datetime to timestamp
         - timestamp never synced with client side it was just a way to delete uniquely selected photos since the same photo/same filename could be uploaded so don't know which photo to delete. This is in `EditTags.js`

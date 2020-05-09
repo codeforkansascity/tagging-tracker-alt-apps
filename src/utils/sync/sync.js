@@ -78,7 +78,6 @@ const updateLocalAddresses = (props, remoteData) => {
 }
 
 const updateLocalTags = (props, remoteData) => {
-    console.log(remoteData);
     const offlineStorage = props.offlineStorage;
     return new Promise(resolve => {
         if (!remoteData.tags) {

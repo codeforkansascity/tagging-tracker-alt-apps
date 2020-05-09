@@ -213,7 +213,7 @@ const BottomNavbar = (props) => {
                     <button onClick={ saveToDevice }
                         className="bottom-navbar__btn quarter caps-blue border small-font"
                         type="button"
-                        disabled={ props.savingToDevice ? true : false }>
+                        disabled={ (props.savingToDevice || !props.loadedPhotos.length) ? true : false }>
                             {props.savingToDevice
                                 ? <>
                                     <span>Saving...</span>
