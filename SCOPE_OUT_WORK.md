@@ -39,4 +39,5 @@ Dang this one is unfortunatetly brutal despite how simple it seems.
 - [ ] Link existing pictures screen
     - [ ] shows photos by date with `+` icons to top left
     - [ ] prompt "Link selected photos to this event"
-- [ ] if no photos, can't go back eg. "Loading tags...", `< Addresses` is not functional
+- [x] if no photos, can't go back eg. "Loading tags...", `< Addresses` is not functional
+    - css issue eg. overlay blocking content underneath

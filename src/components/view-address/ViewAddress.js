@@ -74,10 +74,14 @@ const ViewAddress = (props) => {
                 </React.Fragment>
             });
         } else {
-            return <div className="tagging-tracker__view-address-loading css-delayed-fade-in">
-                <span>Loading tags...</span>
-                <img src={ ajaxLoaderGray } alt="loading tags spinner" />
-            </div>;
+            return(localImages && Object(localImages).length)
+                ? <div className="tagging-tracker__view-address-loading css-delayed-fade-in">
+                    <span>Loading tags...</span>
+                    <img src={ ajaxLoaderGray } alt="loading tags spinner" />
+                </div>
+                : <div className="tagging-tracker__view-address-no-tags">
+                    <h4>No Tags</h4>
+                </div>;
         }
     }
 
