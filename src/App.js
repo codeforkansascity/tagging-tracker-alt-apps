@@ -76,9 +76,9 @@ const App = () => {
 		db.version(3).stores({
 			addresses: "++id,address,lat,lng,created,updated",
 			events: "++,addressId,tagInfoId,tagIds,datetime",
-			tags: "++,fileName,addressId,meta,datetime",
+			tags: "++,fileName,addressId,eventId,meta,datetime",
 			ownerInfo: "++,addressId,formData",
-			tagInfo: "++,addressId,formData"
+			tagInfo: "++,addressId,eventId,formData"
 		});
 		setOfflineStorage(db);
 	};

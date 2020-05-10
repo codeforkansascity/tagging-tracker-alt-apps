@@ -7,6 +7,9 @@
     - right now if files have the same name they will be deleted, counting on unique file name of camera
 - [ ] flaw in unique tags... it all hinges on having unique file names, the datetime helps but it can be a problem
 
+### Most recent extra
+- [ ] add dedicated "delete events" screen, currently just rendered per row
+
 ### GitHub Pages deployment
 - [ ] consider better way eg. a dedicated repo or some kind of build process
 

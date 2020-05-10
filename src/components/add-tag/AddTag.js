@@ -82,7 +82,7 @@ const AddTag = (props) => {
                 oldCanvas.remove();
             }
 
-            offlineStorage.transaction('rw', offlineStorage.tags, async() => {
+            offlineStorage.transaction('rw', offlineStorage.tags, async () => {
                 if (
                     await offlineStorage.tags.add({
                         addressId: address.addressId,
