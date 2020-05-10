@@ -18,6 +18,7 @@ import BottomNavbar from './components/bottom-navbar/BottomNavbar';
 import Page404 from './pages/page404/Page404';
 import AddTag from './components/add-tag/AddTag';
 import DeleteTag from './components/edit-tags/EditTags';
+import Events from './components/events/Events';
 
 const App = () => {
 	const [token, setToken] = useState("");
@@ -72,8 +73,9 @@ const App = () => {
 
 	const setupOfflineStorage = () => {
 		const db = new Dexie("LocalImageDatabase");
-		db.version(1).stores({
+		db.version(3).stores({
 			addresses: "++id,address,lat,lng,created,updated",
+			events: "++,addressId,tagInfoId,tagIds,datetime",
 			tags: "++,fileName,addressId,meta,datetime",
 			ownerInfo: "++,addressId,formData",
 			tagInfo: "++,addressId,formData"
@@ -175,14 +177,16 @@ const App = () => {
 							path={"/view-address"}
 							component={ (props) =>
 								true
-								? <ViewAddress {...props}
+								? <ViewAddress
+									{...props}
 									offlineStorage={offlineStorage} />
 								: <Redirect to="/"/> } />
 						<Route
 							path="/owner-info"
 							component={ (props) =>
 								true
-									? <OwnerInfo {...props}
+									? <OwnerInfo
+										{...props}
 										modifyOwnerInfo={modifyOwnerInfo}
 										offlineStorage={offlineStorage} />
 									: <Redirect to="/"/> }/>
@@ -190,7 +194,8 @@ const App = () => {
 							path="/tag-info"
 							component={ (props) =>
 								true
-									? <TagInfo {...props}
+									? <TagInfo
+										{...props}
 										modifyTagInfo={modifyTagInfo}
 										offlineStorage={offlineStorage} />
 									: <Redirect to="/"/> }/>
@@ -215,11 +220,21 @@ const App = () => {
 										{...props}
 										offlineStorage={offlineStorage} />
 									: <Redirect to="/"/> }/>
+						
+						<Route
+							path="/events"
+							component={ (props) =>
+								true
+									? <Events
+										{...props}
+										offlineStorage={offlineStorage} />
+									: <Redirect to="/"/> }/>
 						<Route
 							path={["/","/addresses"]}
 							component={ (props) =>
 								true 
-									? <Addresses {...props}
+									? <Addresses
+										{...props}
 										searchedAddress={searchedAddress}
 										setShowAddressModal={setShowAddressModal}
 										showAddressModal={showAddressModal}

@@ -19,7 +19,7 @@ const EditTags = (props) => {
         history.push("/addresses");
     }
 
-    const deleteImage = (addressId, fileName) => { // oof this camel case is it one word or two
+    const deleteImage = (addressId, fileName) => {
         offlineStorage.transaction('rw', offlineStorage.tags, () => {
             if (
                 offlineStorage.tags.where("addressId").equals(addressId).toArray()

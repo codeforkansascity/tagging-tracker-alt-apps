@@ -19,6 +19,8 @@ const Navbar = (props) => {
             navTitle = "Tag Information";
         } else if (path === "/owner-info") {
             navTitle = "Owner Information";
+        } else if (path === "/events") {
+            navTitle = "Events";
         } else {
             navTitle = address;
         }
@@ -27,7 +29,7 @@ const Navbar = (props) => {
     }
 
     const getBackButtonTitle = (path, address) => {
-        if (path === "/tag-info" || path === "owner-info" || path === "/add-tag" || path === "/edit-tags") {
+        if (path === "/tag-info" || path === "owner-info" || path === "/add-tag" || path === "/edit-tags" || path === "/events") {
             let addressOutput = address.substring(0, 10);
 
             if (address.length > 10) {
@@ -41,7 +43,7 @@ const Navbar = (props) => {
     }
 
     const getBackPathname = (path) => {
-        if (path === "/tag-info" || path === "/owner-info" || path === "/edit-tags" || path === "/add-tag") {
+        if (path === "/tag-info" || path === "/owner-info" || path === "/edit-tags" || path === "/add-tag" || path === "/events") {
             return "/view-address";
         } else {
             return "/addresses"
@@ -77,8 +79,7 @@ const Navbar = (props) => {
                     onClick={ editSaveOwnerInfo }
                 >{ props.modifyOwnerInfo ? "SAVE" : "EDIT" }</button> // TODO: this should flex between save/edit/cancel if changes occurred
             );
-        } 
-        else if (pathname === "/tag-info") {
+        } else if (pathname === "/tag-info") {
             return (
                 <button
                     type="button"
@@ -86,6 +87,8 @@ const Navbar = (props) => {
                     onClick={ editTagInfo }
                 >{ props.modifyTagInfo ? "SAVE" : "EDIT" }</button> // TODO: this should flex between save/edit/cancel if changes occurred
             );
+        } else if (pathname === "/events") {
+            return null;
         } else {
             return (
                 <Link to={{ pathname: isEditTagsPath ? "view-address" : "/edit-tags", state: { 
@@ -133,6 +136,7 @@ const Navbar = (props) => {
             case '/add-tag':
             case '/tag-info':
             case '/owner-info':
+            case '/events':
                 return <>
                     <div className="tagging-tracker__navbar-top view-address edit-tags add-tags">
                         <Link to={{ pathname: getBackPathname(routeLocation.pathname), state: getBackState(routeLocation.pathname)}} className="manage-address__back">
