@@ -6,17 +6,17 @@ I think I have to condense `Edit/Add Events` to one button since there is a `Del
 ### Sections to update
 #### Address screen
 Dang this one is unfortunatetly brutal despite how simple it seems.
-- [ ] bottom navbar
-    - [ ] Tag Info `->` Events
-        - [ ] Events shows list of events
-    - [ ] Tag Info `->` Add Event
+- [ ] test date, issue with splitting based on `T` or `" "`
+- [x] bottom navbar
+    - [x] Tag Info `->` Events
+        - [x] Events shows list of events
 - [ ] Event Date Info(both Edit Event and Add Event go here)
     - [ ] Tag Info screen
-        - [ ] change 'Date of Picture' to 'Date of entry'
-        - [ ] add to 'Tag text' add clarifying text: (separated by commas)
-            - [ ] change to long line, textarea input
-        - [ ] add to 'Small tag text' add clarifying text: (separated by commas)
-            - [ ] change to long line, textarea input
+        - [x] change 'Date of Picture' to 'Date of entry'
+        - [x] add to 'Tag text' add clarifying text: (separated by commas)
+            - [x] change to long line, textarea input
+        - [x] add to 'Small tag text' add clarifying text: (separated by commas)
+            - [x] change to long line, textarea input
         - [ ] add 'Link Existing Pictures'
 - [ ] Link existing pictures event
     - [ ] shows photos by date with `+` icons to top left

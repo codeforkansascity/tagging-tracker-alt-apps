@@ -58,7 +58,7 @@ const ViewAddress = (props) => {
             });
 
             return Object.keys(tagsGroupedByDate).map((date, index) => {
-                const groupDate = date.indexOf("T") ? date.split("T")[0] : date.split(" ")[0];
+                const groupDate = date.indexOf("T") !== -1 ? date.split("T")[0] : date.split(" ")[0];
 
                 return <React.Fragment key={ index }>
                     { renderDateRow(groupDate) }

@@ -9,13 +9,13 @@ import rightArrow from './../../assets/icons/svgs/chevron.svg';
 
 const Events = (props) => {
     const offlineStorage = props.offlineStorage;
+    const addressId = props.location.state.addressId;
     const [events, setEvents] = useState([]);
     const [addingEvent, setAddingEvent] = useState(false);
 
     // this just adds an event based on current date
     const addEvent = async () => {
         setAddingEvent(true);
-        const addressId = props.location.state.addressId;
 
         /**
          * Three steps:
@@ -85,7 +85,7 @@ const Events = (props) => {
     // check set any events
     useEffect(() => {
         if (offlineStorage) { // wait for offlineStorage to be ready
-            offlineStorage.events.toArray().then((events) => {
+            offlineStorage.events.where("addressId").equals(addressId).toArray().then((events) => {
                 setEvents(events);
             });
         }

@@ -127,11 +127,12 @@ const TagInfo = (props) => {
 
         if (updateDone) {
             updateDone = false;
+
+            const tagInfoId = props.location.state.tagInfoId;
         
             offlineStorage.transaction('rw', offlineStorage.tagInfo, async() => {
                 if (
-                    await offlineStorage.tagInfo.put({
-                        addressId: props.location.state.addressId,
+                    await offlineStorage.tagInfo.where(":id").equals(tagInfoId).modify({
                         formData: mappedFieldValues
                     }, props.location.state.addressId).then((insertedId) => {
                         return true;
