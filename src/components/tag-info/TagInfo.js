@@ -216,11 +216,23 @@ const TagInfo = (props) => {
         }
     }
 
+    const modifyClassWrapper = (field) => {
+        if (
+            field === "Type of property" ||
+            field === "Vacant property" ||
+            field === "Land bank property"
+        ) {
+            return " full-column-left";
+        }
+
+        return "";
+    }
+
     const renderTagInfo = () => {
         return Object.keys(tagInfoFields).map((field, index) => {
             return (
                 // bad
-                <div key={index} className={"tag-info-field-row" + (tagInfoFields[field].type === "checkbox" ? " checkbox" : " box") }>
+                <div key={index} className={"tag-info-field-row" + (tagInfoFields[field].type === "checkbox" ? " checkbox" : " box") + modifyClassWrapper(field) }>
                     <span className={ getSpanClass(tagInfoFields[field].type) }>{ field }</span>
                     { generateInputType(tagInfoFields[field], index, field) }
                 </div>
@@ -230,6 +242,7 @@ const TagInfo = (props) => {
 
     useEffect(() => {
         if (!tagInfo) {
+            console.log(props);
             const addressId = props.location.state.addressId;
             const offlineStorage = props.offlineStorage;
 

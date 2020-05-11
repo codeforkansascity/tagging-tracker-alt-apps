@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Events.scss';
 import { getDateTime, formatTimeStr } from '../../utils/date';
 import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './eventUtils';
@@ -58,9 +59,14 @@ const Events = (props) => {
         <div className="tagging-tracker__events">
             {
                 events.map((event, id) => {
-                    console.log(event);
                     return (
-                        <div key={ id } className="tagging-tracker__event">
+                        <Link
+                            key={ id }
+                            to={{ pathname: "/tag-info", state: {
+                                addressId: event.addressId,
+                                tagInfoId: event.tagInfoId // used for lookup
+                            }}}
+                            className="tagging-tracker__event">
                             <button type="button" id="event-delete-btn">
                                 <img src={ closeIcon } alt="delete event icon" />
                             </button>
@@ -69,7 +75,7 @@ const Events = (props) => {
                                 <span className="date">{ event.datetime.split(" ")[0] }</span>
                             </div>
                             <img id="event-view-icon" src={ rightArrow } alt="open event icon" />
-                        </div>
+                        </Link>
                     )
                 })
             }

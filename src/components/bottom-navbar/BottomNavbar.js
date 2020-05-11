@@ -250,11 +250,11 @@ const BottomNavbar = (props) => {
                             <span>Owner Info</span>
                     </Link>
                     <Link
-                        to={{ pathname: eventsPath ? "/events" : "/tag-info", state: {
+                        to={{ pathname: "/events", state: {
                                 address: address.address,
                                 addressId: address.addressId // used for lookup
                         }}}
-                        className={"bottom-navbar__btn toggled " + (tagPath ? "active" : "") }>
+                        className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
                             <img src={ calendar } alt="events button icon" />
                             <span>Events</span>
                     </Link>
