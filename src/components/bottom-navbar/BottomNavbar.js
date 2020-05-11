@@ -267,7 +267,8 @@ const BottomNavbar = (props) => {
     const getBottomNavbarClasses = () => {
         const floatingBtnPaths = [
             "/owner-info",
-            "/tag-info"
+            "/tag-info",
+            "/events"
         ];
 
         const floatingBtns = floatingBtnPaths.indexOf(props.location.pathname) !== -1;
