@@ -21,18 +21,18 @@ const TagInfo = (props) => {
 
     // these have to match the order of the keys in tagFields.js
     const tagInfoFieldKeys = {
-        "Date of picture:": "", // TODO - change to type date
+        "Date of entry:": "", // TODO - change to type date
         "Date of abatement:": "", // TODO - change to type date, picker is extra but format guarding would be good
         "Number of tags:": "",
-        "Tag text:": "",
-        "Small tag text:": "",
+        "Tag text (separated by commas):": "",
+        "Small tag text (separated by commas):": "",
         "Square footage covered:": "",
         "Racial or hate tone?": "",
-        "Gang related": "",
-        "Crossed out tag": "",
-        "Type of property": "",
-        "Vacant property": "",
-        "Land bank property": "",
+        "Gang related:": "",
+        "Crossed out tag:": "",
+        "Type of property:": "",
+        "Vacant property:": "",
+        "Land bank property:": "",
         "Surface:": "",
         "Surface other:": "",
         "Need other code enforcement?": "",
@@ -218,9 +218,11 @@ const TagInfo = (props) => {
 
     const modifyClassWrapper = (field) => {
         if (
-            field === "Type of property" ||
-            field === "Vacant property" ||
-            field === "Land bank property"
+            field === "Type of property:" ||
+            field === "Vacant property:" ||
+            field === "Land bank property:" ||
+            field === "Tag text (separated by commas):" ||
+            field === "Small tag text (separated by commas):" // super jank I know
         ) {
             return " full-column-left";
         }
@@ -242,12 +244,11 @@ const TagInfo = (props) => {
 
     useEffect(() => {
         if (!tagInfo) {
-            console.log(props);
-            const addressId = props.location.state.addressId;
+            const tagInfoId = props.location.state.tagInfoId;
             const offlineStorage = props.offlineStorage;
 
-            if (addressId && offlineStorage) {
-                offlineStorage.tagInfo.get(addressId, (tagInfo) => {
+            if (tagInfoId && offlineStorage) {
+                offlineStorage.tagInfo.get(tagInfoId, (tagInfo) => {
                     if (tagInfo) {
                         setTagInfo(tagInfo.formData);
                     }
