@@ -1,4 +1,4 @@
-const addNewTagInfo = async ( addressId, offlineStorage, setAddingEvent ) => {
+export const addNewTagInfo = async ( addressId, offlineStorage, setAddingEvent ) => {
     // this is dumb, I can't explain this, the transaction is a promise
     // so you shouldn't need a promise around a promise
     // but it seems to be the only way to force these to execute in order
@@ -21,7 +21,7 @@ const addNewTagInfo = async ( addressId, offlineStorage, setAddingEvent ) => {
     });
 }
 
-const addNewEvent = async ( tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime, setAddingEvent ) => {
+export const addNewEvent = async ( tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime, setAddingEvent ) => {
     return new Promise((resolve, reject) => {
         offlineStorage.transaction('rw', offlineStorage.events, async () => {
             offlineStorage.events.add({
@@ -42,7 +42,7 @@ const addNewEvent = async ( tagInfoId, addressId, offlineStorage, formatTimeStr,
     });
 }
 
-const updateTagInfoEventId = ( tagInfoId, eventId, offlineStorage, setAddingEvent ) => {
+export const updateTagInfoEventId = ( tagInfoId, eventId, offlineStorage, setAddingEvent ) => {
     return new Promise((resolve, reject) => {
         offlineStorage.transaction('rw', offlineStorage.tagInfo, () => {
             offlineStorage.tagInfo.where(":id").equals(tagInfoId).modify({ // should only be one match
@@ -58,10 +58,4 @@ const updateTagInfoEventId = ( tagInfoId, eventId, offlineStorage, setAddingEven
             });
         });
     });
-}
-
-module.exports = {
-    addNewTagInfo,
-    addNewEvent,
-    updateTagInfoEventId
 }

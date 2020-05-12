@@ -33,10 +33,8 @@ const App = () => {
 	const [loggingOut, updateLoggingOut] = useState(false);
 	const [deletedAddresses, setDeletedAddresses] = useState([]); // I only later realized you can have a whole state object vs individual lines like this
 
-	// this is for the github pages deployment for the subdirectory
-	// this also gets passed down into navbar.js and bottomNavbar.js
-	// if using a custom domain vs. github.pages.io/sub-directory/app, this is not needed/default to empty string
-	// const baseName = window.location.href.indexOf('localhost:') !== -1 ? "" : "tagging-tracker-pwa"; // package.json homepage should match this false value
+	// if deploying to a domain/target with subdirectories, set this here
+	// it should match what's after the base of the build-dev domain in package.json eg. tagging-tracker-pwa note no leading slash
 	const baseName = ""; // package.json homepage should be /
 
 	const searchAddress = (searchStr) => {
