@@ -12,7 +12,6 @@ import ajaxLoaderGray from './../../assets/gifs/ajax-loader--gray.gif';
 import ajaxLoaderBlue from './../../assets/gifs/ajax-loader--blue.gif';
 import { syncUserData, deleteLocalData } from '../../utils/sync/sync';
 import { checkIOS, resizeAdjustHeight, addPathClassToBody } from '../../utils/misc';
-import { deleteAddress } from '../../utils/delete';
 
 const BottomNavbar = (props) => {
     const syncBtn = useRef(null);
@@ -20,7 +19,6 @@ const BottomNavbar = (props) => {
     const cameraBtn = useRef(null);
     const uploadBtn = useRef(null);
     const history = useHistory();
-    const [deletingAddress, setDeletingAddress] = useState(false);
 
     const logout = async () => {
         props.updateLoggingOut(true);
@@ -93,27 +91,6 @@ const BottomNavbar = (props) => {
         document.getElementById('add-tag-file-input').click();
     }
 
-    // this function is called after the delete process is done
-    const finishedDeletingAddress = (addressObj) => {
-        // finished deleting, go back to main addresses view
-        setDeletingAddress(false);
-        if (Object.keys(addressObj).length) {
-            const tmpArr = props.deletedAddresses;
-            tmpArr.push(addressObj.address); // the primary "key" is the address string
-            props.setDeletedAddresses(tmpArr);
-        }
-        history.push("/addresses");
-    }
-
-    const deleteAddressBtnCallback = (addressObj) => {
-        // bad naming convention
-        const shouldDeleteAddress = window.confirm("Delete " + addressObj.address + " ?");
-        if (shouldDeleteAddress) {
-            setDeletingAddress(true);
-            deleteAddress(props, addressObj, finishedDeletingAddress);
-        }
-    }
-
     const renderBottomNavbar = (routeLocation) => {
         const address = props.location.state;
         const routePath =  props.baseDir ? routeLocation.pathname.replace(props.baseDir + "/", "") : routeLocation.pathname;
@@ -151,10 +128,11 @@ const BottomNavbar = (props) => {
             case "/view-address":
             case "/edit-tags":
                 return <>
-                    <button
-                        onClick={ () => deleteAddressBtnCallback(address) }
+                    {/* <button
+                        // onClick={ () => deleteAddressBtnCallback(address) }
                         className="bottom-navbar__btn fourth"
-                        disabled={ deletingAddress ? true : false }>
+                        // disabled={ deletingAddress ? true : false }
+                        >
                         {deletingAddress
                             ? <>
                                 <span>Deleting...</span>
@@ -165,7 +143,7 @@ const BottomNavbar = (props) => {
                                 <span>Delete</span>
                             </>
                         }
-                    </button>
+                    </button> */}
                     <Link
                         to={{ pathname: "/owner-info", state: {
                                 address: address.address,

@@ -1,12 +1,16 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Navbar.scss';
+import { deleteAddress } from '../../utils/delete';
 
 import backArrow from './../../assets/icons/svgs/chevron-blue.svg'; // rotated by CSS
 
 const Navbar = (props) => {
+    console.log(props);
     const searchAddressInput = useRef(null);
+    const history = useHistory();
     const [showSettings, setShowSettings] = useState(false);
+    const [deletingAddress, setDeletingAddress] = useState(false);
 
     const searchAddresses = (searchStr) => {
         props.searchAddress(searchStr);
@@ -98,14 +102,44 @@ const Navbar = (props) => {
         } else if (pathname === "/events") {
             return null;
         } else {
-            return (
-                <Link to={{ pathname: isEditTagsPath ? "view-address" : "/edit-tags", state: { 
+            return isEditTagsPath
+                ? (
+                    <button
+                        type="button"
+                        className="manage-address__edit-cancel"
+                        onClick={ deleteAddressCallback }
+                        disabled={ deletingAddress ? true : false }
+                    >Delete</button>
+                )
+                : (
+                <Link to={{ pathname: "/edit-tags", state: { 
                     address: props.location.state.address,
                     addressId: props.location.state.addressId
                 }}} className="manage-address__edit-cancel">{
-                    isAddTagPath ? "" : (isEditTagsPath ? "Cancel" : "Delete")
+                    isAddTagPath ? "" : (isEditTagsPath ? "Delete" : "Edit")
                 }</Link>
             );
+        }
+    }
+
+    const finishedDeletingAddress = (addressObj) => {
+        // finished deleting, go back to main addresses view
+        console.log(addressObj);
+        setDeletingAddress(false);
+        if (Object.keys(addressObj).length) {
+            const tmpArr = props.deletedAddresses;
+            tmpArr.push(addressObj.address); // the primary "key" is the address string
+            props.setDeletedAddresses(tmpArr);
+        }
+        history.push("/addresses");
+    }
+
+    const deleteAddressCallback = () => {
+        const addressObj = props.location.state;
+        const shouldDeleteAddress = window.confirm("Delete " + addressObj.address + " ?");
+        if (shouldDeleteAddress) {
+            setDeletingAddress(true);
+            deleteAddress(props, addressObj, finishedDeletingAddress);
         }
     }
 

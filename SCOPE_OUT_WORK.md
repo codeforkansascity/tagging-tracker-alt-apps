@@ -3,21 +3,25 @@ Restructure app to allow sorting/grouping and future events while still sharing 
 
 I think I have to condense `Edit/Add Events` to one button since there is a `Delete` button as well.
 
-### Sections to update
-#### Address screen
-Dang this one is unfortunatetly brutal despite how simple it seems.
-- [ ] test date, issue with splitting based on `T` or `" "`
-- [x] bottom navbar
-    - [x] Tag Info `->` Events
-        - [x] Events shows list of events
-- [ ] Event Date Info(both Edit Event and Add Event go here)
-    - [ ] Tag Info screen
-        - [x] change 'Date of Picture' to 'Date of entry'
-        - [x] add to 'Tag text' add clarifying text: (separated by commas)
-            - [x] change to long line, textarea input
-        - [x] add to 'Small tag text' add clarifying text: (separated by commas)
-            - [x] change to long line, textarea input
-        - [ ] add 'Link Existing Pictures'
-- [ ] Link existing pictures event
-    - [ ] shows photos by date with `+` icons to top left
-    - [ ] prompt "Link selected photos to this event"
+### Semi undo-update
+- [ ] View Address
+    - [ ] update top navbar
+        - [ ] set DELETE back to EDIT
+        - [ ] change CANCEL to DELETE
+            - this becomes the "delete address" call that was in the bottom navbar
+    - [ ] update bottom navbar
+        - [ ] set Delete to Owner Info
+        - [ ] Owner Info to Edit Event
+            - [ ] goes to events
+        - [ ] Add Event
+            - [ ] goes to tag info(new obv)
+- [ ] Events
+    - add toggle in navbar eg. Delete, shows delete icons
+- [ ] New functionality
+    - [ ] Add "Link Existing Features" to Tag Info
+        - Shows photos... I guess the idea you may have taken photos in advance, then add them to an event later
+        - [ ] show plus icons on top left corner of thumbnail
+        - [ ] Add(top right navbar I guess)
+        - [ ] prompt to confirm, then add/update relationships
+- [ ] Extra
+    - [ ] way to update event date

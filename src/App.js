@@ -160,7 +160,11 @@ const App = () => {
 						modifyOwnerInfo={modifyOwnerInfo}
 						modifyTagInfo={modifyTagInfo}
 						toggleModifyTagInfo={toggleModifyTagInfo}
-						updateSoftware={updateSoftware} /> } />
+						updateSoftware={updateSoftware}
+						deletedAddresses={deletedAddresses}
+						setDeletedAddresses={setDeletedAddresses}
+						offlineStorage={offlineStorage} />
+				}/> {/* put this break here since it confused me having it against the line before */}
 				<div className={ bodyClass }>
 					<Switch>
 						<Route
@@ -262,8 +266,6 @@ const App = () => {
 							offlineStorage={offlineStorage}
 							loggingOut={loggingOut}
 							updateLoggingOut={updateLoggingOut}
-							deletedAddresses={deletedAddresses}
-							setDeletedAddresses={setDeletedAddresses}
 						/>
 						: null
 					} />

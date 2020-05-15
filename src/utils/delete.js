@@ -114,15 +114,15 @@ export const deleteAddress = (props, addressObj, finishedDeletingAddress) => {
             // backup timer if all fails
             backupDelFailTimer = setTimeout(() => {
                 alert('Failed to delete address or taking longer than usual'); // what
-                finishedDeletingAddress();
+                finishedDeletingAddress(addressObj);
             }, 60000); // 1 min long
         }).catch (function (err) {
             // handle this failure correctly
             alert('failed to open local storage', err);
-            finishedDeletingAddress();
+            finishedDeletingAddress(addressObj);
         });
     } else {
         alert('Failed to delete address');
-        finishedDeletingAddress();
+        finishedDeletingAddress(addressObj);
     }
 }
