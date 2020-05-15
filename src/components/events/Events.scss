@@ -59,6 +59,10 @@
     #event-delete-btn {
         background: transparent;
         border: 0;
+
+        &, span {
+            text-decoration: none;
+        }
     }
 
     #event-delete-btn, #event-view-icon {

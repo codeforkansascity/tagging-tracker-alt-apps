@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Events.scss';
 import { getDateTime, formatTimeStr } from '../../utils/date';
 import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './eventUtils';
+import { deleteEvent } from '../../utils/delete';
 
 import closeIcon from './../../assets/icons/svgs/close.svg';
 import rightArrow from './../../assets/icons/svgs/chevron.svg';
@@ -15,36 +16,36 @@ const Events = (props) => {
     const [addingEvent, setAddingEvent] = useState(false);
 
     // this just adds an event based on current date
-    const addEvent = async () => {
-        setAddingEvent(true);
+    // const addEvent = async () => {
+    //     setAddingEvent(true);
 
-        /**
-         * Three steps:
-         * 1) make tag info for new event
-         * 2) create event
-         * 3) bind taginfo to event
-         */
-        const tagInfoId = await addNewTagInfo(addressId, offlineStorage, setAddingEvent);
-        const eventId = await addNewEvent(tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime, setAddingEvent);
-        const tagInfoEventIdUpdated = await updateTagInfoEventId(tagInfoId, eventId, offlineStorage, setAddingEvent);
+    //     /**
+    //      * Three steps:
+    //      * 1) make tag info for new event
+    //      * 2) create event
+    //      * 3) bind taginfo to event
+    //      */
+    //     const tagInfoId = await addNewTagInfo(addressId, offlineStorage, setAddingEvent);
+    //     const eventId = await addNewEvent(tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime, setAddingEvent);
+    //     const tagInfoEventIdUpdated = await updateTagInfoEventId(tagInfoId, eventId, offlineStorage, setAddingEvent);
 
-        // bind tagInfoId to this event
-        if (tagInfoEventIdUpdated) {
-            offlineStorage.events.where("addressId").equals(addressId).toArray()
-                .then((events) => {
-                    setEvents(events);
-                    setAddingEvent(false);
-                })
-                .catch((e) => {
-                    console.log('Failed to update local events', e);
-                    alert('Failed to update local events');
-                    setAddingEvent(false);
-                });
-        } else {
-            alert('Failed to create event');
-            setAddingEvent(false);
-        }
-    }
+    //     // bind tagInfoId to this event
+    //     if (tagInfoEventIdUpdated) {
+    //         offlineStorage.events.where("addressId").equals(addressId).toArray()
+    //             .then((events) => {
+    //                 setEvents(events);
+    //                 setAddingEvent(false);
+    //             })
+    //             .catch((e) => {
+    //                 console.log('Failed to update local events', e);
+    //                 alert('Failed to update local events');
+    //                 setAddingEvent(false);
+    //             });
+    //     } else {
+    //         alert('Failed to create event');
+    //         setAddingEvent(false);
+    //     }
+    // }
 
     const renderAddEvent = (
         <div className="tagging-tracker__events-add-event">

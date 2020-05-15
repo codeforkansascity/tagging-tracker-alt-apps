@@ -33,7 +33,7 @@ const App = () => {
 	const [loggingOut, updateLoggingOut] = useState(false);
 	const [deletedAddresses, setDeletedAddresses] = useState([]); // I only later realized you can have a whole state object vs individual lines like this
 	const [deleteEventsMode, setDeleteEventsMode] = useState(false);
-	const [deletingEvents, setDeletingEvents] = useState(false);
+	const [deletingEvent, setDeletingEvent] = useState(false);
 
 	// if deploying to a domain/target with subdirectories, set this here
 	// it should match what's after the base of the build-dev domain in package.json eg. tagging-tracker-pwa note no leading slash
@@ -234,7 +234,9 @@ const App = () => {
 									? <Events
 										{...props}
 										offlineStorage={offlineStorage}
-										deleteEventsMode={deleteEventsMode} />
+										deleteEventsMode={deleteEventsMode}
+										deletingEvent={deletingEvent}
+										setDeletingEvent={setDeletingEvent} />
 									: <Redirect to="/"/> }/>
 						<Route
 							path={["/","/addresses"]}

@@ -16,7 +16,8 @@ I think I have to condense `Edit/Add Events` to one button since there is a `Del
         - [x] Add Event
             - [x] goes to tag info(new obv)
 - [ ] Events
-    - add toggle in navbar eg. Delete, shows delete icons
+    - [x] add toggle in navbar eg. Delete, shows delete icons
+    - [ ] add the actual delete method eg. `Dexie`
 - [ ] New functionality
     - [ ] Add "Link Existing Features" to Tag Info
         - Shows photos... I guess the idea you may have taken photos in advance, then add them to an event later
@@ -25,3 +26,7 @@ I think I have to condense `Edit/Add Events` to one button since there is a `Del
         - [ ] prompt to confirm, then add/update relationships
 - [ ] Extra
     - [ ] way to update event date
+        - thoughts:
+            - in edit mode the dates on the right side of the row are editable
+                - ugly/too much work
+            - use the date of entry on the form for the event date or vice versa... this makes sense but have to bridge two different `Dexie` tables 
