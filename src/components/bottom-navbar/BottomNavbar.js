@@ -10,6 +10,8 @@ import addSquare from './../../assets/icons/svgs/add-square.svg';
 import deleteIcon from './../../assets/icons/svgs/delete.svg';
 import ajaxLoaderGray from './../../assets/gifs/ajax-loader--gray.gif';
 import ajaxLoaderBlue from './../../assets/gifs/ajax-loader--blue.gif';
+import edit from './../../assets/icons/svgs/pencil.svg';
+
 import { syncUserData, deleteLocalData } from '../../utils/sync/sync';
 import { checkIOS, resizeAdjustHeight, addPathClassToBody } from '../../utils/misc';
 
@@ -128,22 +130,6 @@ const BottomNavbar = (props) => {
             case "/view-address":
             case "/edit-tags":
                 return <>
-                    {/* <button
-                        // onClick={ () => deleteAddressBtnCallback(address) }
-                        className="bottom-navbar__btn fourth"
-                        // disabled={ deletingAddress ? true : false }
-                        >
-                        {deletingAddress
-                            ? <>
-                                <span>Deleting...</span>
-                                <img src={ ajaxLoaderGray } alt="deleting address spinner" />
-                            </>
-                            : <>
-                                <img src={ deleteIcon } alt="home owner button icon" />
-                                <span>Delete</span>
-                            </>
-                        }
-                    </button> */}
                     <Link
                         to={{ pathname: "/owner-info", state: {
                                 address: address.address,
@@ -159,8 +145,17 @@ const BottomNavbar = (props) => {
                                 addressId: address.addressId // used for lookup
                         }}}
                         className="bottom-navbar__btn fourth">
-                        <img src={ calendar } alt="events button icon" />
-                        <span>Events</span>
+                        <img src={ edit } alt="edit event button icon" />
+                        <span>Edit Event</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/tag-info", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className="bottom-navbar__btn fourth">
+                        <img src={ addSquare } alt="add event button icon" />
+                        <span>Add Event</span>
                     </Link>
                     <Link
                         to={{ pathname: "/add-tag", state: {

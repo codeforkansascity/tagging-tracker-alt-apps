@@ -6,7 +6,6 @@ import { deleteAddress } from '../../utils/delete';
 import backArrow from './../../assets/icons/svgs/chevron-blue.svg'; // rotated by CSS
 
 const Navbar = (props) => {
-    console.log(props);
     const searchAddressInput = useRef(null);
     const history = useHistory();
     const [showSettings, setShowSettings] = useState(false);
@@ -53,10 +52,8 @@ const Navbar = (props) => {
     }
 
     const getBackPathname = (path) => {
-        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag" || path === "/events") {
+        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag" || path === "/events" || path === "/tag-info") {
             return "/view-address";
-        } else if (path === "/tag-info") {
-            return "/events";
         } else {
             return "/addresses"
         }
@@ -124,7 +121,6 @@ const Navbar = (props) => {
 
     const finishedDeletingAddress = (addressObj) => {
         // finished deleting, go back to main addresses view
-        console.log(addressObj);
         setDeletingAddress(false);
         if (Object.keys(addressObj).length) {
             const tmpArr = props.deletedAddresses;

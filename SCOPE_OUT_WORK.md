@@ -4,17 +4,17 @@ Restructure app to allow sorting/grouping and future events while still sharing 
 I think I have to condense `Edit/Add Events` to one button since there is a `Delete` button as well.
 
 ### Semi undo-update
-- [ ] View Address
-    - [ ] update top navbar
-        - [ ] set DELETE back to EDIT
-        - [ ] change CANCEL to DELETE
+- [x] View Address
+    - [x] update top navbar
+        - [x] set DELETE back to EDIT
+        - [x] change CANCEL to DELETE
             - this becomes the "delete address" call that was in the bottom navbar
-    - [ ] update bottom navbar
-        - [ ] set Delete to Owner Info
-        - [ ] Owner Info to Edit Event
-            - [ ] goes to events
-        - [ ] Add Event
-            - [ ] goes to tag info(new obv)
+    - [x] update bottom navbar
+        - [x] set Delete to Owner Info
+        - [x] Owner Info to Edit Event
+            - [x] goes to events
+        - [x] Add Event
+            - [x] goes to tag info(new obv)
 - [ ] Events
     - add toggle in navbar eg. Delete, shows delete icons
 - [ ] New functionality
