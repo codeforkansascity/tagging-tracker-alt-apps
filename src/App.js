@@ -35,8 +35,14 @@ const App = () => {
 	const [deleteEventsMode, setDeleteEventsMode] = useState(false);
 	const [deletingEvent, setDeletingEvent] = useState(false);
 
-	// if deploying to a domain/target with subdirectories, set this here
-	// it should match what's after the base of the build-dev domain in package.json eg. tagging-tracker-pwa note no leading slash
+	/**
+	  * if deploying to a example.com/target with subdirectories, baseName should be updated below
+	  * otherwise leave it blank
+	  * it should match what's after the example.com/ of the build-dev domain in package.json
+	  * example: example.com/tagging-tracker -> tagging-tracker
+	  * example: example.com/sub-folder/tagging-tracker -> sub-folder/tagging-tracker
+	  * make sure package.json's build dev has the example.com/ path
+	  */
 	const baseName = ""; // package.json homepage should be /
 
 	const searchAddress = (searchStr) => {

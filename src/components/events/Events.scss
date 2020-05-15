@@ -16,6 +16,7 @@
         border-radius: 5px;
         padding: 10px 20px;
         font-size: 1rem;
+        text-decoration: none;
 
         &:disabled {
             opacity: 0.6;
@@ -59,10 +60,6 @@
     #event-delete-btn {
         background: transparent;
         border: 0;
-
-        &, span {
-            text-decoration: none;
-        }
     }
 
     #event-delete-btn, #event-view-icon {

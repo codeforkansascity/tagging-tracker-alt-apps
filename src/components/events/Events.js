@@ -51,7 +51,7 @@ const Events = (props) => {
         <div className="tagging-tracker__events-add-event">
             <Link
                 to={{ pathname: "/tag-info", state: {
-                    address,
+                    address: address.address,
                     addressId // used for lookup
                 }}}
                 className="events-add-event__btn">
