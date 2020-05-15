@@ -9,6 +9,7 @@ import rightArrow from './../../assets/icons/svgs/chevron.svg';
 
 const Events = (props) => {
     const offlineStorage = props.offlineStorage;
+    const address = props.location.state;
     const addressId = props.location.state.addressId;
     const [events, setEvents] = useState([]);
     const [addingEvent, setAddingEvent] = useState(false);
@@ -47,11 +48,14 @@ const Events = (props) => {
 
     const renderAddEvent = (
         <div className="tagging-tracker__events-add-event">
-            <button
-                type="button"
-                className="events-add-event__btn"
-                onClick={ addEvent }
-                disabled={ addingEvent ? true : false }>Add Event</button>
+            <Link
+                to={{ pathname: "/tag-info", state: {
+                    address,
+                    addressId // used for lookup
+                }}}
+                className="events-add-event__btn">
+                <span>Add Event</span>
+            </Link>
         </div>
     )
 
@@ -67,9 +71,9 @@ const Events = (props) => {
                                 tagInfoId: event.tagInfoId // used for lookup
                             }}}
                             className="tagging-tracker__event">
-                            <button type="button" id="event-delete-btn">
+                            { props.deleteEventsMode ? <button type="button" id="event-delete-btn">
                                 <img src={ closeIcon } alt="delete event icon" />
-                            </button>
+                            </button> : null }
                             <div id="event-text">
                                 <span className="text">Event</span>
                                 <span className="date">{ event.datetime.split(" ")[0] }</span>

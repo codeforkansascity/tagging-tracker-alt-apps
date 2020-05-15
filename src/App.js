@@ -32,6 +32,8 @@ const App = () => {
 	const [syncApp, setSyncApp] = useState(false);
 	const [loggingOut, updateLoggingOut] = useState(false);
 	const [deletedAddresses, setDeletedAddresses] = useState([]); // I only later realized you can have a whole state object vs individual lines like this
+	const [deleteEventsMode, setDeleteEventsMode] = useState(false);
+	const [deletingEvents, setDeletingEvents] = useState(false);
 
 	// if deploying to a domain/target with subdirectories, set this here
 	// it should match what's after the base of the build-dev domain in package.json eg. tagging-tracker-pwa note no leading slash
@@ -163,7 +165,9 @@ const App = () => {
 						updateSoftware={updateSoftware}
 						deletedAddresses={deletedAddresses}
 						setDeletedAddresses={setDeletedAddresses}
-						offlineStorage={offlineStorage} />
+						offlineStorage={offlineStorage}
+						deleteEventsMode={deleteEventsMode}
+						setDeleteEventsMode={setDeleteEventsMode} />
 				}/> {/* put this break here since it confused me having it against the line before */}
 				<div className={ bodyClass }>
 					<Switch>
@@ -229,7 +233,8 @@ const App = () => {
 								true
 									? <Events
 										{...props}
-										offlineStorage={offlineStorage} />
+										offlineStorage={offlineStorage}
+										deleteEventsMode={deleteEventsMode} />
 									: <Redirect to="/"/> }/>
 						<Route
 							path={["/","/addresses"]}

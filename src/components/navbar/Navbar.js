@@ -97,7 +97,13 @@ const Navbar = (props) => {
                 >{ props.modifyTagInfo ? "SAVE" : "EDIT" }</button> // TODO: this should flex between save/edit/cancel if changes occurred
             );
         } else if (pathname === "/events") {
-            return null;
+            return <button
+                type="button"
+                className="manage-address__edit-cancel"
+                onClick={ () => {props.setDeleteEventsMode(!props.deleteEventsMode)} }
+                disabled={ props.deletingEvents ? true : false }>
+                    { props.deleteEventsMode ? "Cancel" : "Delete" }
+            </button>
         } else {
             return isEditTagsPath
                 ? (
