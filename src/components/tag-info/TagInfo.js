@@ -1,8 +1,9 @@
 import React, { createRef, useState, useRef, useEffect } from 'react';
 import './TagInfo.scss';
 
-import { getDateTime } from './../../utils/date';
+import { getDateTime, formatTimeStr } from './../../utils/date';
 import { tagInfoFields } from './../../utils/tagFields';
+import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './../events/eventUtils';
 
 // TODO: there is this functionality of "Others: type here" but that will take some work to make a dynamic input field
 
@@ -17,6 +18,7 @@ import { tagInfoFields } from './../../utils/tagFields';
  * @param {Object} props 
  */
 const TagInfo = (props) => {
+    console.log('taginfo render', props);
     const [tagInfo, setTagInfo] = useState(null);
 
     // these have to match the order of the keys in tagFields.js
@@ -103,7 +105,7 @@ const TagInfo = (props) => {
 
     let updateDone = true; // bad
 
-    const updateTagInfo = () => {
+    const updateTagInfo = async () => {
         const offlineStorage = props.offlineStorage;
         const mappedFieldValues = {}
 
@@ -127,27 +129,40 @@ const TagInfo = (props) => {
 
         if (updateDone) {
             updateDone = false;
+            const existingTagInfoId = props.location.state.tagInfoId;
+            let tagUpdated;
 
-            const tagInfoId = props.location.state.tagInfoId;
-        
-            offlineStorage.transaction('rw', offlineStorage.tagInfo, async() => {
-                if (
-                    await offlineStorage.tagInfo.where(":id").equals(tagInfoId).modify({
-                        formData: mappedFieldValues
-                    }, props.location.state.addressId).then((insertedId) => {
-                        return true;
-                    })
-                ) {
-                    updateDone = true;
+            if (existingTagInfoId) {
+                offlineStorage.transaction('rw', offlineStorage.tagInfo, async() => {
+                    if (
+                        await offlineStorage.tagInfo.where(":id").equals(existingTagInfoId).modify({
+                            formData: mappedFieldValues
+                        }, props.location.state.addressId).then((insertedId) => {
+                            return true;
+                        })
+                    ) {
+                        updateDone = true;
+                    } else {
+                        alert('Failed to update tag information');
+                    }
+                })
+                .catch(e => {
+                    alert('Failed to update tag information');
+                    console.log('tag info', e);
+                });
+
+                if (tagUpdated) {
                     setTagInfo(mappedFieldValues);
                 } else {
                     alert('Failed to update tag information');
                 }
-            })
-            .catch(e => {
-                alert('Failed to update tag information');
-                console.log('tag info', e);
-            });
+            } else {
+                const addressId = props.location.state.addressId;
+                const tagInfoId = await addNewTagInfo(addressId, offlineStorage, false, mappedFieldValues);
+                const eventId = await addNewEvent(tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime);
+                const tagInfoEventIdUpdated = await updateTagInfoEventId(tagInfoId, eventId, offlineStorage);
+                setTagInfo(mappedFieldValues);
+            }
         }
     }
 
