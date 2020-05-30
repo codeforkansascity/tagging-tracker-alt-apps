@@ -96,6 +96,8 @@ const BottomNavbar = (props) => {
     const renderBottomNavbar = (routeLocation) => {
         const address = props.location.state;
         const routePath =  props.baseDir ? routeLocation.pathname.replace(props.baseDir + "/", "") : routeLocation.pathname;
+        const tagPath = props.location.pathname === "/tag-info";
+        const eventsPath = props.location.pathname === "/events";
 
         switch(routePath) {
             case "/":
@@ -207,11 +209,28 @@ const BottomNavbar = (props) => {
                     </Link>
                 </>
             case "/tag-info":
+                return <>
+                    <Link
+                        to={{ pathname: "/owner-info", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className={"bottom-navbar__btn toggled " + (!(tagPath || eventsPath) ? "active" : "") }>
+                            <img src={ property } alt="home owner button icon" />
+                            <span>Owner Info</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/events", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
+                            <img src={ calendar } alt="events button icon" />
+                            <span>Events</span>
+                    </Link>
+                </>
             case "/owner-info":
             case "/events":
-                const tagPath = props.location.pathname === "/tag-info";
-                const eventsPath = props.location.pathname === "/events";
-
                 return <>
                     <Link
                         to={{ pathname: "/owner-info", state: {

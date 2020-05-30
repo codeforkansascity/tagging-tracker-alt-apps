@@ -16,7 +16,7 @@ const Navbar = (props) => {
     }
 
     const getNavTitle = (path, address) => {
-        console.log(address);
+        console.log(props);
         let navTitle = "";
 
         if (path === "/tag-info") {
@@ -53,7 +53,7 @@ const Navbar = (props) => {
     }
 
     const getBackPathname = (path) => {
-        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag" || path === "/events") {
+        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag") {
             return "/view-address";
         } else if (path === "/tag-info") {
             return "/events";
@@ -62,10 +62,11 @@ const Navbar = (props) => {
         }
     }
 
-    const getBackState = (path) => {
+    const getBackState = (path, address) => { // address is extra/new due to events workflow
+        console.log(address);
         return {
             clearSearch: true,
-            address: props.location.state.address,
+            address,
             addressId: props.location.state.addressId
         };
     }
@@ -184,9 +185,10 @@ const Navbar = (props) => {
             case '/tag-info':
             case '/owner-info':
             case '/events':
+                console.log(props.location);
                 return <>
                     <div className="tagging-tracker__navbar-top view-address edit-tags add-tags">
-                        <Link to={{ pathname: getBackPathname(routeLocation.pathname), state: getBackState(routeLocation.pathname)}} className="manage-address__back">
+                        <Link to={{ pathname: getBackPathname(routeLocation.pathname), state: getBackState(routeLocation.pathname, props.location.state.address)}} className="manage-address__back">
                             <img src={ backArrow } alt="back arrow" />
                         <h4>{ getBackButtonTitle(routeLocation.pathname, props.location.state.address) }</h4>
                         </Link>

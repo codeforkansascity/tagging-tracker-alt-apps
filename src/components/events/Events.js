@@ -69,6 +69,7 @@ const Events = (props) => {
                             key={ id }
                             to={{ pathname: "/tag-info", state: {
                                 addressId: event.addressId,
+                                address: props.location.state.address,
                                 tagInfoId: event.tagInfoId // used for lookup
                             }}}
                             className="tagging-tracker__event">
