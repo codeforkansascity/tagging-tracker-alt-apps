@@ -18,7 +18,6 @@ import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './../events/ev
  * @param {Object} props 
  */
 const TagInfo = (props) => {
-    console.log('taginfo render', props);
     const [tagInfo, setTagInfo] = useState(null);
 
     // these have to match the order of the keys in tagFields.js
@@ -224,7 +223,7 @@ const TagInfo = (props) => {
     const getSpanClass = (fieldType) => {
         if (fieldType === "radio") {
             return "option-group-label";
-        } 
+        }
         if (fieldType === "checkbox") {
             return "full";
         } else {

@@ -11,6 +11,7 @@ import deleteIcon from './../../assets/icons/svgs/delete.svg';
 import ajaxLoaderGray from './../../assets/gifs/ajax-loader--gray.gif';
 import ajaxLoaderBlue from './../../assets/gifs/ajax-loader--blue.gif';
 import edit from './../../assets/icons/svgs/pencil.svg';
+import photo from './../../assets/icons/svgs/photo.svg';
 
 import { syncUserData, deleteLocalData } from '../../utils/sync/sync';
 import { checkIOS, resizeAdjustHeight, addPathClassToBody } from '../../utils/misc';
@@ -208,28 +209,8 @@ const BottomNavbar = (props) => {
                             <span>Cancel</span>
                     </Link>
                 </>
-            case "/tag-info":
-                return <>
-                    <Link
-                        to={{ pathname: "/owner-info", state: {
-                                address: address.address,
-                                addressId: address.addressId // used for lookup
-                        }}}
-                        className={"bottom-navbar__btn toggled " + (!(tagPath || eventsPath) ? "active" : "") }>
-                            <img src={ property } alt="home owner button icon" />
-                            <span>Owner Info</span>
-                    </Link>
-                    <Link
-                        to={{ pathname: "/events", state: {
-                                address: address.address,
-                                addressId: address.addressId // used for lookup
-                        }}}
-                        className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
-                            <img src={ calendar } alt="events button icon" />
-                            <span>Events</span>
-                    </Link>
-                </>
-            case "/owner-info":
+            // case "/tag-info":
+            // case "/owner-info":
             case "/events":
                 return <>
                     <Link
@@ -242,13 +223,13 @@ const BottomNavbar = (props) => {
                             <span>Owner Info</span>
                     </Link>
                     <Link
-                        to={{ pathname: "/events", state: {
+                        to={{ pathname: "/tags", state: {
                                 address: address.address,
                                 addressId: address.addressId // used for lookup
                         }}}
                         className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
-                            <img src={ calendar } alt="events button icon" />
-                            <span>Events</span>
+                            <img src={ photo } alt="events button icon" />
+                            <span>Tags</span>
                     </Link>
                 </>
             default:

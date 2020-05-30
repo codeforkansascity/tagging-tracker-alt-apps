@@ -16,7 +16,6 @@ const Navbar = (props) => {
     }
 
     const getNavTitle = (path, address) => {
-        console.log(props);
         let navTitle = "";
 
         if (path === "/tag-info") {
@@ -63,7 +62,6 @@ const Navbar = (props) => {
     }
 
     const getBackState = (path, address) => { // address is extra/new due to events workflow
-        console.log(address);
         return {
             clearSearch: true,
             address,
@@ -185,7 +183,6 @@ const Navbar = (props) => {
             case '/tag-info':
             case '/owner-info':
             case '/events':
-                console.log(props.location);
                 return <>
                     <div className="tagging-tracker__navbar-top view-address edit-tags add-tags">
                         <Link to={{ pathname: getBackPathname(routeLocation.pathname), state: getBackState(routeLocation.pathname, props.location.state.address)}} className="manage-address__back">

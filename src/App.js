@@ -19,6 +19,7 @@ import Page404 from './pages/page404/Page404';
 import AddTag from './components/add-tag/AddTag';
 import DeleteTag from './components/edit-tags/EditTags';
 import Events from './components/events/Events';
+import EventTags from './components/event-tags/EventTags';
 
 const App = () => {
 	const [token, setToken] = useState("");
@@ -243,6 +244,14 @@ const App = () => {
 										deleteEventsMode={deleteEventsMode}
 										deletingEvent={deletingEvent}
 										setDeletingEvent={setDeletingEvent} />
+									: <Redirect to="/"/> }/>
+						<Route
+							path="/event-tags"
+							component={ (props) =>
+								true
+									? <DeleteTag
+										{...props}
+										offlineStorage={offlineStorage} />
 									: <Redirect to="/"/> }/>
 						<Route
 							path={["/","/addresses"]}

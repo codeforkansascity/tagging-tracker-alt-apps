@@ -67,7 +67,7 @@ const Events = (props) => {
                     return (
                         <Link
                             key={ id }
-                            to={{ pathname: "/tag-info", state: {
+                            to={{ pathname: "/event-tags", state: {
                                 addressId: event.addressId,
                                 address: props.location.state.address,
                                 tagInfoId: event.tagInfoId // used for lookup
