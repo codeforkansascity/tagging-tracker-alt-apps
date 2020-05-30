@@ -26,6 +26,7 @@
 
 .tagging-tracker__events {
     @include flex-hor-row-ali-str;
+    flex-direction: column;
     width: 100%;
 }
 

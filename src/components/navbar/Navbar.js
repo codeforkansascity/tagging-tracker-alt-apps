@@ -16,6 +16,7 @@ const Navbar = (props) => {
     }
 
     const getNavTitle = (path, address) => {
+        console.log(address);
         let navTitle = "";
 
         if (path === "/tag-info") {
@@ -23,7 +24,7 @@ const Navbar = (props) => {
         } else if (path === "/owner-info") {
             navTitle = "Owner Information";
         } else if (path === "/events") {
-            navTitle = "Events";
+            navTitle = `${address} Events`;
         } else {
             navTitle = address;
         }
@@ -52,8 +53,10 @@ const Navbar = (props) => {
     }
 
     const getBackPathname = (path) => {
-        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag" || path === "/events" || path === "/tag-info") {
+        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag" || path === "/events") {
             return "/view-address";
+        } else if (path === "/tag-info") {
+            return "/events";
         } else {
             return "/addresses"
         }
