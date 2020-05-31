@@ -209,8 +209,6 @@ const BottomNavbar = (props) => {
                             <span>Cancel</span>
                     </Link>
                 </>
-            // case "/tag-info":
-            // case "/owner-info":
             case "/events":
                 return <>
                     <Link
@@ -232,6 +230,18 @@ const BottomNavbar = (props) => {
                             <span>Tags</span>
                     </Link>
                 </>
+            // case"/event-tags":
+            //     return <>
+            //         <Link
+            //             to={{ pathname: "/tags", state: {
+            //                     address: address.address,
+            //                     addressId: address.addressId // used for lookup
+            //             }}}
+            //             className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
+            //                 <img src={ photo } alt="events button icon" />
+            //                 <span>Tags</span>
+            //         </Link>
+            //     </>
             default:
                 return null;
         }

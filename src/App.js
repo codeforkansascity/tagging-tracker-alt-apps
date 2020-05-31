@@ -249,7 +249,7 @@ const App = () => {
 							path="/event-tags"
 							component={ (props) =>
 								true
-									? <DeleteTag
+									? <EventTags
 										{...props}
 										offlineStorage={offlineStorage} />
 									: <Redirect to="/"/> }/>
