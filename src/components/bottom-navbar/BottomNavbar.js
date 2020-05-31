@@ -216,19 +216,28 @@ const BottomNavbar = (props) => {
                                 address: address.address,
                                 addressId: address.addressId // used for lookup
                         }}}
-                        className={"bottom-navbar__btn toggled " + (!(tagPath || eventsPath) ? "active" : "") }>
+                        className={"bottom-navbar__btn toggled third " + (!(tagPath || eventsPath) ? "active" : "") }>
                             <img src={ property } alt="home owner button icon" />
                             <span>Owner Info</span>
                     </Link>
                     <Link
+                        to={{ pathname: "/tag-info", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className={ "bottom-navbar__btn toggled third " + (!(eventsPath || tagPath) ? "active" : "") }>
+                        <img src={ addSquare } alt="add event button icon" />
+                        <span>Add Event</span>
+                    </Link>
+                    {/* <Link
                         to={{ pathname: "/tags", state: {
                                 address: address.address,
                                 addressId: address.addressId // used for lookup
                         }}}
-                        className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
+                        className={"bottom-navbar__btn toggled third " + (!(eventsPath || tagPath) ? "active" : "") }>
                             <img src={ photo } alt="events button icon" />
                             <span>Tags</span>
-                    </Link>
+                    </Link> */}
                 </>
             // case"/event-tags":
             //     return <>
@@ -250,8 +259,7 @@ const BottomNavbar = (props) => {
     const getBottomNavbarClasses = () => {
         const floatingBtnPaths = [
             "/owner-info",
-            "/tag-info",
-            "/events"
+            "/tag-info"
         ];
 
         const floatingBtns = floatingBtnPaths.indexOf(props.location.pathname) !== -1;

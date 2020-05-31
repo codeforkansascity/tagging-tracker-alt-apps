@@ -63,7 +63,7 @@ const Events = (props) => {
     const renderEvents = (
         <div className="tagging-tracker__events">
             {
-                events.map((event, id) => {
+                events.reverse().map((event, id) => {
                     return (
                         <Link
                             key={ id }

@@ -184,6 +184,7 @@ const Navbar = (props) => {
             case '/owner-info':
             case '/events':
             case '/event-tags':
+            case '/tags':
                 return <>
                     <div className="tagging-tracker__navbar-top view-address edit-tags add-tags">
                         <Link to={{ pathname: getBackPathname(routeLocation.pathname), state: getBackState(routeLocation.pathname, props.location.state.address)}} className="manage-address__back">
