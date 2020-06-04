@@ -257,6 +257,7 @@ const TagInfo = (props) => {
         });
     };
 
+    // this loads tag info by id in local store(Dexie/IndexedDB)
     useEffect(() => {
         if (!tagInfo) {
             const tagInfoId = props.location.state.tagInfoId;

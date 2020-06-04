@@ -16,6 +16,7 @@ const Navbar = (props) => {
     }
 
     const getNavTitle = (path, address) => {
+        console.log(props);
         let navTitle = "";
 
         if (path === "/tag-info") {
@@ -24,6 +25,8 @@ const Navbar = (props) => {
             navTitle = "Owner Information";
         } else if (path === "/events") {
             navTitle = `${address} Events`;
+        } else if (path === "/event-tags") {
+             navTitle = props.location.state.eventTitle;
         } else {
             navTitle = address;
         }
@@ -99,13 +102,7 @@ const Navbar = (props) => {
                 >{ props.modifyTagInfo ? "SAVE" : "EDIT" }</button> // TODO: this should flex between save/edit/cancel if changes occurred
             );
         } else if (pathname === "/events") {
-            return <button
-                type="button"
-                className="manage-address__edit-cancel"
-                onClick={ () => {props.setDeleteEventsMode(!props.deleteEventsMode)} }
-                disabled={ props.deletingEvents ? true : false }>
-                    { props.deleteEventsMode ? "Cancel" : "Delete" }
-            </button>
+            return null;
         } else {
             return isEditTagsPath
                 ? (

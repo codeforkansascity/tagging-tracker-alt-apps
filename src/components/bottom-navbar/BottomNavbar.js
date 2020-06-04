@@ -5,6 +5,7 @@ import './BottomNavbar.scss';
 import syncIcon from './../../assets/icons/svgs/upload.svg';
 import logoutIcon from './../../assets/icons/svgs/switch.svg';
 import property from './../../assets/icons/svgs/property.svg';
+import textDocument from './../../assets/icons/svgs/text-document.svg';
 import calendar from './../../assets/icons/svgs/calendar.svg';
 import addSquare from './../../assets/icons/svgs/add-square.svg';
 import deleteIcon from './../../assets/icons/svgs/delete.svg';
@@ -99,6 +100,7 @@ const BottomNavbar = (props) => {
         const routePath =  props.baseDir ? routeLocation.pathname.replace(props.baseDir + "/", "") : routeLocation.pathname;
         const tagPath = props.location.pathname === "/tag-info";
         const eventsPath = props.location.pathname === "/events";
+        const eventTagsPath = props.location.pathname === "/event-tags";
 
         switch(routePath) {
             case "/":
@@ -239,18 +241,37 @@ const BottomNavbar = (props) => {
                             <span>Tags</span>
                     </Link> */}
                 </>
-            // case"/event-tags":
-            //     return <>
-            //         <Link
-            //             to={{ pathname: "/tags", state: {
-            //                     address: address.address,
-            //                     addressId: address.addressId // used for lookup
-            //             }}}
-            //             className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
-            //                 <img src={ photo } alt="events button icon" />
-            //                 <span>Tags</span>
-            //         </Link>
-            //     </>
+            case"/event-tags":
+                return <>
+                    <Link
+                        to={{ pathname: "/tag-info", state: {
+                                address: address.address,
+                                addressId: address.addressId, // used for lookup
+                                tagInfoId: props.location.state.tagInfoId
+                        }}}
+                        className="bottom-navbar__btn fourth">
+                        <img src={ textDocument } alt="tag info button icon" />
+                        <span>Tag Info</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/tags", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className={"bottom-navbar__btn toggled " + (eventTagsPath ? "active" : "") }>
+                            <img src={ photo } alt="events button icon" />
+                            <span>Tags</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/add-tag", state: {
+                            address: address.address,
+                            addressId: address.addressId // used for lookup
+                        }}}
+                        className="bottom-navbar__btn fourth">
+                        <img src={ addSquare } alt="add tag icon" />
+                        <span>Add Tag</span>
+                    </Link>
+                </>
             default:
                 return null;
         }

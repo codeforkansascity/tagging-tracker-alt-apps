@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Events.scss';
-import { getDateTime, formatTimeStr } from '../../utils/date';
+import { getDateTime, formatTimeStr, flipDateFormat } from '../../utils/date';
 import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './eventUtils';
 import { deleteEvent } from '../../utils/delete';
 
@@ -13,50 +13,10 @@ const Events = (props) => {
     const address = props.location.state;
     const addressId = props.location.state.addressId;
     const [events, setEvents] = useState([]);
-    const [addingEvent, setAddingEvent] = useState(false);
 
-    // this just adds an event based on current date
-    // const addEvent = async () => {
-    //     setAddingEvent(true);
-
-    //     /**
-    //      * Three steps:
-    //      * 1) make tag info for new event
-    //      * 2) create event
-    //      * 3) bind taginfo to event
-    //      */
-    //     const tagInfoId = await addNewTagInfo(addressId, offlineStorage, setAddingEvent);
-    //     const eventId = await addNewEvent(tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime, setAddingEvent);
-    //     const tagInfoEventIdUpdated = await updateTagInfoEventId(tagInfoId, eventId, offlineStorage, setAddingEvent);
-
-    //     // bind tagInfoId to this event
-    //     if (tagInfoEventIdUpdated) {
-    //         offlineStorage.events.where("addressId").equals(addressId).toArray()
-    //             .then((events) => {
-    //                 setEvents(events);
-    //                 setAddingEvent(false);
-    //             })
-    //             .catch((e) => {
-    //                 console.log('Failed to update local events', e);
-    //                 alert('Failed to update local events');
-    //                 setAddingEvent(false);
-    //             });
-    //     } else {
-    //         alert('Failed to create event');
-    //         setAddingEvent(false);
-    //     }
-    // }
-
-    const renderAddEvent = (
+    const renderNoEvents = (
         <div className="tagging-tracker__events-add-event">
-            <Link
-                to={{ pathname: "/tag-info", state: {
-                    address: address.address,
-                    addressId // used for lookup
-                }}}
-                className="events-add-event__btn">
-                <span>Add Event</span>
-            </Link>
+            No Events
         </div>
     )
 
@@ -70,7 +30,8 @@ const Events = (props) => {
                             to={{ pathname: "/event-tags", state: {
                                 addressId: event.addressId,
                                 address: props.location.state.address,
-                                tagInfoId: event.tagInfoId // used for lookup
+                                tagInfoId: event.tagInfoId, // used for lookup
+                                eventTitle: `Event ${ event.datetime ? flipDateFormat(event.datetime.split(" ")[0], true) : "" }` 
                             }}}
                             className="tagging-tracker__event">
                             { props.deleteEventsMode ? <button type="button" id="event-delete-btn">
@@ -97,7 +58,7 @@ const Events = (props) => {
         }
     }, [offlineStorage]);
 
-    return ( events.length ? renderEvents : renderAddEvent )
+    return ( events.length ? renderEvents : renderNoEvents )
 }
 
 export default Events;
