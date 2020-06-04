@@ -15,3 +15,6 @@
     - click edit on top navbar
     - `tagInfoId` passed into this screen of `edit-tags` use it to filter the
         photos by the `tagInfoId`
+
+### Missing capability
+- [ ] show tags under the event groups, need to complete tag save by event first
