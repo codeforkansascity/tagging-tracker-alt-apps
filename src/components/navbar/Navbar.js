@@ -16,7 +16,6 @@ const Navbar = (props) => {
     }
 
     const getNavTitle = (path, address) => {
-        console.log(props);
         let navTitle = "";
 
         if (path === "/tag-info") {
@@ -102,7 +101,13 @@ const Navbar = (props) => {
                 >{ props.modifyTagInfo ? "SAVE" : "EDIT" }</button> // TODO: this should flex between save/edit/cancel if changes occurred
             );
         } else if (pathname === "/events") {
-            return null;
+            return <button
+                type="button"
+                className="manage-address__edit-cancel"
+                onClick={ () => {setDeletingAddress(!deletingAddress)} }
+                disabled={ props.deletingEvents ? true : false }>
+                    Delete
+            </button>;
         } else {
             return isEditTagsPath
                 ? (
@@ -116,7 +121,8 @@ const Navbar = (props) => {
                 : (
                 <Link to={{ pathname: "/edit-tags", state: { 
                     address: props.location.state.address,
-                    addressId: props.location.state.addressId
+                    addressId: props.location.state.addressId,
+                    tagInfoId: props.location.state.tagInfoId
                 }}} className="manage-address__edit-cancel">{
                     isAddTagPath ? "" : (isEditTagsPath ? "Delete" : "Edit")
                 }</Link>
@@ -137,7 +143,7 @@ const Navbar = (props) => {
 
     const deleteAddressCallback = () => {
         const addressObj = props.location.state;
-        const shouldDeleteAddress = window.confirm("Delete " + addressObj.address + " ?");
+        const shouldDeleteAddress = window.confirm("Delete address " + addressObj.address + " ?");
         if (shouldDeleteAddress) {
             setDeletingAddress(true);
             deleteAddress(props, addressObj, finishedDeletingAddress);
@@ -208,6 +214,13 @@ const Navbar = (props) => {
         // update online/offline status
         props.checkOnlineStatus();
     });
+
+    // delete address
+    useEffect(() => {
+        if (deletingAddress) {
+            deleteAddressCallback();
+        }
+    }, [deletingAddress]);
 
     return(
         <div className="tagging-tracker__navbar">

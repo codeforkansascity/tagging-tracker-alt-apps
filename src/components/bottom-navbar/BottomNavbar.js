@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './BottomNavbar.scss';
+import { deleteEvent } from '../../utils/delete'; // probably bad to do this, add delete logic to a navbar should be global
 
 import syncIcon from './../../assets/icons/svgs/upload.svg';
 import logoutIcon from './../../assets/icons/svgs/switch.svg';
@@ -23,6 +24,8 @@ const BottomNavbar = (props) => {
     const cameraBtn = useRef(null);
     const uploadBtn = useRef(null);
     const history = useHistory();
+
+    const [deletingEvent, setDeletingEvent] = useState(false);
 
     const logout = async () => {
         props.updateLoggingOut(true);
@@ -93,6 +96,24 @@ const BottomNavbar = (props) => {
     // doesn't work in Safari "not a direct action by user" file input wasn't working
     const directCameraClick = () => {
         document.getElementById('add-tag-file-input').click();
+    }
+
+    const deleteEvent = ( eventTitle, tagInfoId ) => {
+        const shouldDeleteEvent = window.confirm("Delete event " + eventTitle + " ?");
+        if (shouldDeleteEvent) {
+            setDeletingEvent(true);
+            // deleteEvent(tagInfoId);
+            doneDeletingEvent();
+        }
+    }
+
+    // this is only here because callback doesn't have params
+    const doneDeletingEvent = () => {
+        setDeletingEvent(false);
+        history.push({
+            pathname: "/events",
+            state: props.location.state
+        });
     }
 
     const renderBottomNavbar = (routeLocation) => {
@@ -242,7 +263,22 @@ const BottomNavbar = (props) => {
                     </Link> */}
                 </>
             case"/event-tags":
+                const eventTitle = props.location.state.eventTitle;
+                const tagInfoId = props.location.state.tagInfoId;
                 return <>
+                    <button onClick= { () => deleteEvent(address.addressId, address.tagInfoId, doneDeletingEvent) } ref={ syncBtn } className="bottom-navbar__btn fourth"
+                        type="button" disabled={ props.appOnline ? false : true }>
+                        {deletingEvent
+                            ? <>
+                                <span>Deleting...</span>
+                                <img src={ ajaxLoaderGray } alt="deleting event spinner" />
+                            </>
+                            : <>
+                                <img src={ deleteIcon } alt="delete button icon" />
+                                <span>Delete</span>
+                            </>
+                        }
+                    </button>
                     <Link
                         to={{ pathname: "/tag-info", state: {
                                 address: address.address,

@@ -73,6 +73,11 @@ const EditTags = (props) => {
     }
 
     const renderTags = () => {
+        const tagInfoId = typeof props.location.state.tagInfoId !== "undefined";
+
+        // if tagInfoId exists filter the pictures out
+        // have to save the pictures with tagInfoId first
+
         if (offlineStorage && !localImages) {
             offlineStorage.open().then(function (offlineStorage) {
                 offlineStorage.tags.toArray().then((tags) => {

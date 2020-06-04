@@ -127,6 +127,6 @@ export const deleteAddress = (props, addressObj, finishedDeletingAddress) => {
     }
 }
 
-export const deleteEvent = (addressId, deleteEventCallBack) => {
+export const deleteEvent = (addressId, tagInfoId, deleteEventCallBack) => {
     
 }
