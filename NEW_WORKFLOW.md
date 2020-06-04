@@ -4,6 +4,8 @@
 - [ ] the save process itself is not working
 
 ### Fix workflows(screen steps)
+- [ ] save event
+    - add a "date exists" check as part of fix below
 - [ ] save tags against an event
     - addresses view, select address
     - address view shows events, select event
