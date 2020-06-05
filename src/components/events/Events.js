@@ -49,6 +49,17 @@ const Events = (props) => {
         </div>
     )
 
+    // check if delete event show update rendered events with remaining events
+    useEffect(() => {
+        if (offlineStorage) { // wait for offlineStorage to be ready
+            const remainingEvents = typeof props.location.state.remainingEvents !== "undefined" ?
+                props.location.state.remainingEvents : null;
+            if (remainingEvents) {
+                setEvents(remainingEvents);
+            }
+        }
+    }, []);
+
     // check set any events
     useEffect(() => {
         if (offlineStorage) { // wait for offlineStorage to be ready

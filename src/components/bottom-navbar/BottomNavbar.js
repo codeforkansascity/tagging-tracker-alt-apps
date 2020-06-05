@@ -98,21 +98,24 @@ const BottomNavbar = (props) => {
         document.getElementById('add-tag-file-input').click();
     }
 
-    const deleteEvent = ( eventTitle, tagInfoId ) => {
-        const shouldDeleteEvent = window.confirm("Delete event " + eventTitle + " ?");
+    // bad naming
+    const confirmDeleteEvent = ( eventTitle, addressId, tagInfoId, callback ) => {
+        const shouldDeleteEvent = window.confirm("Delete " + eventTitle + " ?");
         if (shouldDeleteEvent) {
             setDeletingEvent(true);
-            // deleteEvent(tagInfoId);
-            doneDeletingEvent();
+            deleteEvent(props.offlineStorage, addressId, tagInfoId, callback);
         }
     }
 
     // this is only here because callback doesn't have params
-    const doneDeletingEvent = () => {
+    const doneDeletingEvent = (remainingEvents) => {
         setDeletingEvent(false);
         history.push({
             pathname: "/events",
-            state: props.location.state
+            state: {
+                ...props.location.state,
+                remainingEvents
+            }
         });
     }
 
@@ -266,7 +269,7 @@ const BottomNavbar = (props) => {
                 const eventTitle = props.location.state.eventTitle;
                 const tagInfoId = props.location.state.tagInfoId;
                 return <>
-                    <button onClick= { () => deleteEvent(address.addressId, address.tagInfoId, doneDeletingEvent) } ref={ syncBtn } className="bottom-navbar__btn fourth"
+                    <button onClick= { () => confirmDeleteEvent(eventTitle, address.addressId, tagInfoId, doneDeletingEvent) } ref={ syncBtn } className="bottom-navbar__btn fourth"
                         type="button" disabled={ props.appOnline ? false : true }>
                         {deletingEvent
                             ? <>

@@ -127,6 +127,45 @@ export const deleteAddress = (props, addressObj, finishedDeletingAddress) => {
     }
 }
 
-export const deleteEvent = (addressId, tagInfoId, deleteEventCallBack) => {
-    
+const getCurEvents = (db, addressId) => {
+    return new Promise((resolve, reject) => {
+        db.events.where("addressId").equals(addressId).toArray()
+            .then((tags) => {
+                resolve(tags);
+            })
+            .catch(() => {
+                resolve(null);
+            });
+    });
+}
+
+export const deleteEvent = (db, addressId, tagInfoId, deleteEventCallBack) => {
+    db.open().then(function (dbOpened) {
+        const tagInfo = dbOpened.events.where("tagInfoId").equals(tagInfoId);
+        tagInfo.count()
+            .then((count) => {
+                if (count) {
+                    tagInfo.delete()
+                        .then(async () => {
+                            return getCurEvents(db, addressId);
+                        })
+                        .then((curEvents) => {
+                            deleteEventCallBack(curEvents);
+                        })
+                        .catch((err) => {
+                            alert('Failed to delete event');
+                            deleteEventCallBack(); // so many of these
+                        });
+                }
+            })
+            .catch((err) => {
+                alert('Failed to delete event');
+                deleteEventCallBack();
+            });
+    })
+    .catch (function (err) {
+        // handle this failure correctly
+        alert('failed to open local storage', err);
+        deleteEventCallBack();
+    });
 }
