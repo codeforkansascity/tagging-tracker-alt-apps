@@ -3,6 +3,7 @@ import './AddTag.scss';
 import BottomNavbar from './../../components/bottom-navbar/BottomNavbar';
 import axios from 'axios';
 import { getDateTime, formatTimeStr } from './../../utils/date';
+import { getTagInfoObjById } from './../events/eventUtils';
 
 /**
  * Brief explanation how this works it's kind of confusing since everything is a callback of a callback
@@ -14,6 +15,10 @@ import { getDateTime, formatTimeStr } from './../../utils/date';
  * I'm going to resize the photo with canvas for the thumbnail and potentially save storage by capping files
  * @param {*} props 
  */
+
+// bad quick hack
+let eventId = null;
+
 const AddTag = (props) => {
     const fileInput = useRef(null);
     const [loadCamera, triggerLoadCamera] = useState(false);
@@ -85,6 +90,7 @@ const AddTag = (props) => {
             offlineStorage.transaction('rw', offlineStorage.tags, async () => {
                 if (
                     await offlineStorage.tags.add({
+                        eventId,
                         addressId: address.addressId,
                         fileName: loadedPhoto.meta.name,
                         src: loadedPhoto.src,
@@ -202,6 +208,18 @@ const AddTag = (props) => {
             }
         });
     }
+
+    const getEventId = async ( offlineStorage, tagInfoId ) => {
+        const tagInfoObj = await getTagInfoObjById(offlineStorage, tagInfoId);
+        eventId = tagInfoObj ? tagInfoObj.eventId : null;
+    }
+
+    // set eventId so tags are saved against that in new structure not just saved under address
+    useEffect(() => {
+        if (props.offlineStorage && props.location.state.tagInfoId) {
+            getEventId(props.offlineStorage, props.location.state.tagInfoId);
+        }
+    }, []);
 
     // Step 1: Click on file input when clicking on Use Camera button
     useEffect(() => {

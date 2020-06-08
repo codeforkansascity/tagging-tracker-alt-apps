@@ -150,7 +150,6 @@ const TagInfo = (props) => {
                     console.log('tag info', e);
                 });
             } else {
-                console.log('else');
                 const addressId = props.location.state.addressId;
                 const tagInfoId = await addNewTagInfo(addressId, offlineStorage, false, mappedFieldValues);
                 const eventId = await addNewEvent(tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime);

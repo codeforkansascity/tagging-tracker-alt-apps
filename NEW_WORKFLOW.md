@@ -2,20 +2,20 @@ Overall my approach to three sub components varying functionality by route vs. s
 was a bad idea. It's a pain dealing with all the possible render outcomes.
 
 ### Obvious bugs
-- [ ] when first saving event(tag info) against address, everytime you save it makes a new one
+- [x] when first saving event(tag info) against address, everytime you save it makes a new one
     - save as blur/save button
     - from bottom navbar first save, no callback to set active event based on newly generated, so keeps making more 
-- [ ] the save process itself is not working
+- [x] the save process itself is not working
 
 ### Fix workflows(screen steps)
-- [ ] save event
+- [x] save event
     - add a "date exists" check as part of fix below
-- [ ] save tags against an event
+- [x] save tags against an event
     - addresses view, select address
     - address view shows events, select event
     - [ ] add tag currently shows address, switch to event
     - [ ] when saving tags add a `tagInfoId` column, maybe already exists
-- [ ] filter tags by an event
+- [x] filter tags by an event
     - addresses view, select address
     - select event
     - click edit on top navbar
@@ -27,3 +27,6 @@ was a bad idea. It's a pain dealing with all the possible render outcomes.
 
 ### Side bugs
 Hitting save vs. using onblur event doesn't behave the same, looks like it didn't save but it did. Onblur is fine.
+
+### cleanup
+- tag info not deleted when event is deleted, leaves extra tag infos unbound to events

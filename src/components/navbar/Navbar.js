@@ -48,16 +48,20 @@ const Navbar = (props) => {
             }
 
             return addressOutput;
+        } else if (path === "/event-tags") {
+            return "Events";
         } else {
             return "Addresses";
         }
     }
 
     const getBackPathname = (path) => {
-        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag") {
+        if (path === "/owner-info" || path === "/edit-tags") {
             return "/view-address";
         } else if (path === "/tag-info" || path === "/event-tags") {
             return "/events";
+        } else if (path === "/add-tag") {
+            return "/event-tags";
         } else {
             return "/addresses"
         }
@@ -67,7 +71,8 @@ const Navbar = (props) => {
         return {
             clearSearch: true,
             address,
-            addressId: props.location.state.addressId
+            addressId: props.location.state.addressId,
+            tagInfoId: props.location.state.tagInfoId
         };
     }
 

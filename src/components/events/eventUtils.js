@@ -56,7 +56,7 @@ export const addNewEvent = async ( tagInfoId, addressId, offlineStorage, formatT
         offlineStorage.transaction('rw', offlineStorage.events, async () => {
             offlineStorage.events.add({
                 addressId,
-                tagInfoId: tagInfoId,
+                tagInfoId,
                 tagIds: [],
                 datetime: todaysDate
             }).then((eventId) => {
@@ -89,3 +89,28 @@ export const updateTagInfoEventId = ( tagInfoId, eventId, offlineStorage, setAdd
         });
     });
 }
+
+export const getTagInfoObjById = async ( offlineStorage, tagInfoId ) => {
+    return new Promise((resolve, reject) => {
+        offlineStorage.tagInfo.get(tagInfoId)
+            .then((tagInfo) => {
+                resolve(tagInfo);
+            })
+            .catch((err) => {
+                console.log('error getting tag info obj');
+                reject();
+            });
+    });
+}
+
+// actually returning matching primaryKey(s) in Dexie
+export const getEventIdByTagInfoId = async ( offlineStorage, tagInfoId ) => {
+    return new Promise((resolve, reject) => {
+        offlineStorage.transaction('rw', offlineStorage.events, async () => {
+            const keys = await offlineStorage.events.where("tagInfoId").equals(tagInfoId).primaryKeys();
+        })
+        .catch(e => {
+            console.log('failed to get event primary key', e);
+        });
+    });
+} 
