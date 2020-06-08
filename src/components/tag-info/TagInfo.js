@@ -129,7 +129,6 @@ const TagInfo = (props) => {
         if (updateDone) {
             updateDone = false;
             const existingTagInfoId = props.location.state.tagInfoId;
-            let tagUpdated;
 
             if (existingTagInfoId) {
                 offlineStorage.transaction('rw', offlineStorage.tagInfo, async() => {
@@ -140,6 +139,7 @@ const TagInfo = (props) => {
                             return true;
                         })
                     ) {
+                        setTagInfo(mappedFieldValues);
                         updateDone = true;
                     } else {
                         alert('Failed to update tag information');
@@ -149,12 +149,6 @@ const TagInfo = (props) => {
                     alert('Failed to update tag information');
                     console.log('tag info', e);
                 });
-
-                if (tagUpdated) {
-                    setTagInfo(mappedFieldValues);
-                } else {
-                    alert('Failed to update tag information');
-                }
             } else {
                 const addressId = props.location.state.addressId;
                 const tagInfoId = await addNewTagInfo(addressId, offlineStorage, false, mappedFieldValues);
