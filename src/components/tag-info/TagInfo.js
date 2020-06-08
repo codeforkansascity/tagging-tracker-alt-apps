@@ -19,6 +19,7 @@ import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './../events/ev
  */
 const TagInfo = (props) => {
     const [tagInfo, setTagInfo] = useState(null);
+    const [tagInfoId, setTagInfoId] = useState(null);
 
     // these have to match the order of the keys in tagFields.js
     const tagInfoFieldKeys = {
@@ -83,7 +84,6 @@ const TagInfo = (props) => {
         "option-15-0": "otherCodeEnforcement"
     };
 
-    // damn this is brutal but it works
     const tagInfoInputElements = useRef(Object.keys(tagInfoFieldKeys).map(
         // these are manually mapped based on tagFields.js not great, mainly for the nested inputs eg. radio/checkbox
         (fieldKey) => {
@@ -128,7 +128,7 @@ const TagInfo = (props) => {
 
         if (updateDone) {
             updateDone = false;
-            const existingTagInfoId = props.location.state.tagInfoId;
+            const existingTagInfoId = props.location.state.tagInfoId || tagInfoId; // first one has precedence
 
             if (existingTagInfoId) {
                 offlineStorage.transaction('rw', offlineStorage.tagInfo, async() => {
@@ -150,10 +150,12 @@ const TagInfo = (props) => {
                     console.log('tag info', e);
                 });
             } else {
+                console.log('else');
                 const addressId = props.location.state.addressId;
                 const tagInfoId = await addNewTagInfo(addressId, offlineStorage, false, mappedFieldValues);
                 const eventId = await addNewEvent(tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime);
-                const tagInfoEventIdUpdated = await updateTagInfoEventId(tagInfoId, eventId, offlineStorage);
+                await updateTagInfoEventId(tagInfoId, eventId, offlineStorage);
+                setTagInfoId(tagInfoId);
                 setTagInfo(mappedFieldValues);
             }
         }
