@@ -24,3 +24,6 @@ was a bad idea. It's a pain dealing with all the possible render outcomes.
 
 ### Missing capability
 - [ ] show tags under the event groups, need to complete tag save by event first
+
+### Side bugs
+Hitting save vs. using onblur event doesn't behave the same, looks like it didn't save but it did. Onblur is fine.

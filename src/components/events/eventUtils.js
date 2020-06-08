@@ -21,14 +21,44 @@ export const addNewTagInfo = async ( addressId, offlineStorage, setAddingEvent, 
     });
 }
 
+// this is pretty much using a contains check since the stored datetime string has hour:minutes:seconds
+// but it's still pulling all entries by address as it's not too many
+const checkEventExistsByDate = async ( offlineStorage, addressId, checkDate ) => {
+    return new Promise((resolve, reject) => {
+        offlineStorage.transaction('rw', offlineStorage.events, () => {
+            offlineStorage.events.where("addressId").equals(addressId).toArray()
+            .then((events) => {
+                if (events.length) {
+                    // if true means already exists, reject add event
+                    resolve(events.some(event => event.datetime.indexOf(checkDate) !== -1));
+                } else {
+                    resolve(false);
+                }
+            })
+            .catch((err) => {
+                console.log('failed checking for event duplicate', err);
+                alert('failed check for adding new event');
+                reject(false);
+            });
+        });
+    });
+}
+
 export const addNewEvent = async ( tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime, setAddingEvent = false ) => {
+    const todaysDate = formatTimeStr(getDateTime()) // makes YYYY-MM-DD HH:MM:SS format for MySQL DateTime;
+    const eventExists = await checkEventExistsByDate(offlineStorage, addressId, todaysDate.split(" ")[0]);
+    if (eventExists) {
+        alert('Error: Event date already exists');
+        return;
+    };
+
     return new Promise((resolve, reject) => {
         offlineStorage.transaction('rw', offlineStorage.events, async () => {
             offlineStorage.events.add({
                 addressId,
                 tagInfoId: tagInfoId,
                 tagIds: [],
-                datetime: formatTimeStr(getDateTime()) // makes YYYY-MM-DD HH:MM:SS format for MySQL DateTime
+                datetime: todaysDate
             }).then((eventId) => {
                 resolve(eventId);
             });
