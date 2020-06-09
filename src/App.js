@@ -226,7 +226,6 @@ const App = () => {
 										appOnline={appOnline}
 									/>
 									: <Redirect to="/"/> }/>
-							}/>
 						<Route
 							path="/edit-tags"
 							component={ (props) =>
