@@ -32,10 +32,22 @@ const Navbar = (props) => {
     }
 
     const getBackButtonTitle = (path, address) => {
-        if (path === "/tag-info" || path === "owner-info" || path === "/add-tag" || path === "/edit-tags" || path === "/events") {
+        const matchPaths = [
+            "/tag-info",
+            "/owner-info",
+            "/add-tag",
+            "/edit-tags",
+            "/events",
+            "/event-tags"
+        ];
+
+        const pathMatches = matchPaths.indexOf(path) !== -1; // what path
+        const notEventTags = path !== "/event-tags";
+
+        if (pathMatches) {
             let addressOutput;
 
-            if (address) {
+            if (address && notEventTags) {
                 addressOutput = address.substring(0, 10);
 
                 if (address.length > 10) {

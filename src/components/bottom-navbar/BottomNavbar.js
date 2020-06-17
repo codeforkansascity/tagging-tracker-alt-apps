@@ -95,10 +95,12 @@ const BottomNavbar = (props) => {
     }
 
     const renderBottomNavbar = (routeLocation) => {
+        console.log('render bottom navbar', routeLocation);
         const address = props.location.state;
         const routePath =  props.baseDir ? routeLocation.pathname.replace(props.baseDir + "/", "") : routeLocation.pathname;
         const tagPath = props.location.pathname === "/tag-info";
         const eventsPath = props.location.pathname === "/events";
+        const tagsPath = props.location.pathname === "/event-tags";
 
         switch(routePath) {
             case "/":
@@ -163,7 +165,8 @@ const BottomNavbar = (props) => {
                     <Link
                         to={{ pathname: "/add-tag", state: {
                             address: address.address,
-                            addressId: address.addressId // used for lookup
+                            addressId: address.addressId,
+                            tagInfoId: routeLocation.state.tagInfoId
                         }}}
                         className="bottom-navbar__btn fourth">
                         <img src={ addSquare } alt="add tag icon" />
@@ -171,6 +174,7 @@ const BottomNavbar = (props) => {
                     </Link>
                 </>
             case "/add-tag":
+                console.log('add tag', props);
                 return <>
                     <button ref={ cameraBtn } onClick={ directCameraClick } className="bottom-navbar__btn quarter caps-blue border small-font" type="button">
                         <span>Use Camera</span>
@@ -201,9 +205,10 @@ const BottomNavbar = (props) => {
                             }
                     </button>
                     <Link
-                        to={{ pathname: "/view-address", state: {
+                        to={{ pathname: "/event-tags", state: {
                             address: address.address,
-                            addressId: address.addressId // used for lookup
+                            addressId: address.addressId,
+                            tagInfoId: routeLocation.state.tagInfoId
                         }}}
                         className="bottom-navbar__btn quarter caps-blue small-font">
                             <span>Cancel</span>
@@ -229,28 +234,46 @@ const BottomNavbar = (props) => {
                         <img src={ addSquare } alt="add event button icon" />
                         <span>Add Event</span>
                     </Link>
-                    {/* <Link
+                </>
+            case"/event-tags":
+                return <>
+                    <Link
+                        to={{ pathname: "/tag-info", state: { // routing doesn't matter app doesn't see it
+                                address: address.address,
+                                addressId: address.addressId
+                        }}}
+                        className={"bottom-navbar__btn toggled third " + (tagPath ? "active" : "") }>
+                            <img src={ property } alt="home owner button icon" />
+                            <span>Event Info</span>
+                    </Link>
+                    <Link
                         to={{ pathname: "/tags", state: {
                                 address: address.address,
                                 addressId: address.addressId // used for lookup
                         }}}
-                        className={"bottom-navbar__btn toggled third " + (!(eventsPath || tagPath) ? "active" : "") }>
+                        className={"bottom-navbar__btn toggled " + (tagsPath ? "active" : "") }>
                             <img src={ photo } alt="events button icon" />
-                            <span>Tags</span>
-                    </Link> */}
+                            <span>Pictures</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/events", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className="bottom-navbar__btn toggled third">
+                        <img src={ calendar } alt="events button icon" />
+                        <span>Events</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/add-tag", state: {
+                            address: address.address,
+                            addressId: address.addressId // used for lookup
+                        }}}
+                        className="bottom-navbar__btn fourth">
+                        <img src={ addSquare } alt="add tag icon" />
+                        <span>Add Picture</span>
+                    </Link>
                 </>
-            // case"/event-tags":
-            //     return <>
-            //         <Link
-            //             to={{ pathname: "/tags", state: {
-            //                     address: address.address,
-            //                     addressId: address.addressId // used for lookup
-            //             }}}
-            //             className={"bottom-navbar__btn toggled " + ((eventsPath || tagPath) ? "active" : "") }>
-            //                 <img src={ photo } alt="events button icon" />
-            //                 <span>Tags</span>
-            //         </Link>
-            //     </>
             default:
                 return null;
         }

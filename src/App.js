@@ -44,7 +44,7 @@ const App = () => {
 	  * example: example.com/sub-folder/tagging-tracker -> sub-folder/tagging-tracker
 	  * make sure package.json's build dev has the example.com/ path
 	  */
-	const baseName = ""; // package.json homepage should be /
+	const baseName = "demos/tagging-tracker-newer"; // package.json homepage should be /
 
 	const searchAddress = (searchStr) => {
 		updateSearchedAddress(searchStr);
