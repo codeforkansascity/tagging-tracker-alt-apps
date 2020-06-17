@@ -262,45 +262,6 @@ const BottomNavbar = (props) => {
                     </Link>
                 </>
             case"/event-tags":
-                return <>
-                    <Link
-                        to={{ pathname: "/tag-info", state: { // routing doesn't matter app doesn't see it
-                                address: address.address,
-                                addressId: address.addressId
-                        }}}
-                        className={"bottom-navbar__btn toggled third " + (tagPath ? "active" : "") }>
-                            <img src={ property } alt="home owner button icon" />
-                            <span>Event Info</span>
-                    </Link>
-                    <Link
-                        to={{ pathname: "/tags", state: {
-                                address: address.address,
-                                addressId: address.addressId // used for lookup
-                        }}}
-                        className={"bottom-navbar__btn toggled " + (tagsPath ? "active" : "") }>
-                            <img src={ photo } alt="events button icon" />
-                            <span>Pictures</span>
-                    </Link>
-                    <Link
-                        to={{ pathname: "/events", state: {
-                                address: address.address,
-                                addressId: address.addressId // used for lookup
-                        }}}
-                        className="bottom-navbar__btn toggled third">
-                        <img src={ calendar } alt="events button icon" />
-                        <span>Events</span>
-                    </Link>
-                    <Link
-                        to={{ pathname: "/add-tag", state: {
-                            address: address.address,
-                            addressId: address.addressId // used for lookup
-                        }}}
-                        className="bottom-navbar__btn fourth">
-                        <img src={ addSquare } alt="add tag icon" />
-                        <span>Add Picture</span>
-                    </Link>
-                </>
-            case"/event-tags":
                 const eventTitle = props.location.state.eventTitle;
                 const tagInfoId = props.location.state.tagInfoId;
                 return <>
@@ -325,7 +286,7 @@ const BottomNavbar = (props) => {
                         }}}
                         className="bottom-navbar__btn fourth">
                         <img src={ textDocument } alt="tag info button icon" />
-                        <span>Tag Info</span>
+                        <span>Event Info</span>
                     </Link>
                     <Link
                         to={{ pathname: "/tags", state: {
@@ -334,7 +295,7 @@ const BottomNavbar = (props) => {
                         }}}
                         className={"bottom-navbar__btn toggled " + (eventTagsPath ? "active" : "") }>
                             <img src={ photo } alt="events button icon" />
-                            <span>Tags</span>
+                            <span>Pictures</span>
                     </Link>
                     <Link
                         to={{ pathname: "/add-tag", state: {
@@ -344,7 +305,7 @@ const BottomNavbar = (props) => {
                         }}}
                         className="bottom-navbar__btn fourth">
                         <img src={ addSquare } alt="add tag icon" />
-                        <span>Add Tag</span>
+                        <span>Add Picture</span>
                     </Link>
                 </>
             default:
