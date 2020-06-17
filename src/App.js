@@ -43,8 +43,10 @@ const App = () => {
 	  * example: example.com/tagging-tracker -> tagging-tracker
 	  * example: example.com/sub-folder/tagging-tracker -> sub-folder/tagging-tracker
 	  * make sure package.json's build dev has the example.com/ path
+	  * 
+	  * update: for the package.json homepage path I had to set the /path-from-domain
 	  */
-	const baseName = "demos/tagging-tracker-newer"; // package.json homepage should be /
+	const baseName = "";
 
 	const searchAddress = (searchStr) => {
 		updateSearchedAddress(searchStr);
@@ -224,7 +226,6 @@ const App = () => {
 										appOnline={appOnline}
 									/>
 									: <Redirect to="/"/> }/>
-							}/>
 						<Route
 							path="/edit-tags"
 							component={ (props) =>

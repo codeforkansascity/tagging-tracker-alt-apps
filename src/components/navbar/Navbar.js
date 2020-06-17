@@ -24,6 +24,8 @@ const Navbar = (props) => {
             navTitle = "Owner Information";
         } else if (path === "/events") {
             navTitle = `${address} Events`;
+        } else if (path === "/event-tags") {
+             navTitle = props.location.state.eventTitle;
         } else {
             navTitle = address;
         }
@@ -58,16 +60,20 @@ const Navbar = (props) => {
             }
 
             return addressOutput;
+        } else if (path === "/event-tags") {
+            return "Events";
         } else {
             return "Addresses";
         }
     }
 
     const getBackPathname = (path) => {
-        if (path === "/owner-info" || path === "/edit-tags" || path === "/add-tag") {
+        if (path === "/owner-info" || path === "/edit-tags") {
             return "/view-address";
         } else if (path === "/tag-info" || path === "/event-tags") {
             return "/events";
+        } else if (path === "/add-tag") {
+            return "/event-tags";
         } else {
             return "/addresses"
         }
@@ -77,7 +83,8 @@ const Navbar = (props) => {
         return {
             clearSearch: true,
             address,
-            addressId: props.location.state.addressId
+            addressId: props.location.state.addressId,
+            tagInfoId: props.location.state.tagInfoId
         };
     }
 
@@ -114,10 +121,10 @@ const Navbar = (props) => {
             return <button
                 type="button"
                 className="manage-address__edit-cancel"
-                onClick={ () => {props.setDeleteEventsMode(!props.deleteEventsMode)} }
+                onClick={ () => {setDeletingAddress(!deletingAddress)} }
                 disabled={ props.deletingEvents ? true : false }>
-                    { props.deleteEventsMode ? "Cancel" : "Delete" }
-            </button>
+                    Delete
+            </button>;
         } else {
             return isEditTagsPath
                 ? (
@@ -131,7 +138,8 @@ const Navbar = (props) => {
                 : (
                 <Link to={{ pathname: "/edit-tags", state: { 
                     address: props.location.state.address,
-                    addressId: props.location.state.addressId
+                    addressId: props.location.state.addressId,
+                    tagInfoId: props.location.state.tagInfoId
                 }}} className="manage-address__edit-cancel">{
                     isAddTagPath ? "" : (isEditTagsPath ? "Delete" : "Edit")
                 }</Link>
@@ -152,7 +160,7 @@ const Navbar = (props) => {
 
     const deleteAddressCallback = () => {
         const addressObj = props.location.state;
-        const shouldDeleteAddress = window.confirm("Delete " + addressObj.address + " ?");
+        const shouldDeleteAddress = window.confirm("Delete address " + addressObj.address + " ?");
         if (shouldDeleteAddress) {
             setDeletingAddress(true);
             deleteAddress(props, addressObj, finishedDeletingAddress);
@@ -223,6 +231,13 @@ const Navbar = (props) => {
         // update online/offline status
         props.checkOnlineStatus();
     });
+
+    // delete address
+    useEffect(() => {
+        if (deletingAddress) {
+            deleteAddressCallback();
+        }
+    }, [deletingAddress]);
 
     return(
         <div className="tagging-tracker__navbar">

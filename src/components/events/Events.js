@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Events.scss';
-import { getDateTime, formatTimeStr } from '../../utils/date';
+import { getDateTime, formatTimeStr, flipDateFormat } from '../../utils/date';
 import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './eventUtils';
 import { deleteEvent } from '../../utils/delete';
 
@@ -13,18 +13,10 @@ const Events = (props) => {
     const address = props.location.state;
     const addressId = props.location.state.addressId;
     const [events, setEvents] = useState([]);
-    const [addingEvent, setAddingEvent] = useState(false);
 
-    const renderAddEvent = (
+    const renderNoEvents = (
         <div className="tagging-tracker__events-add-event">
-            <Link
-                to={{ pathname: "/tag-info", state: {
-                    address: address.address,
-                    addressId // used for lookup
-                }}}
-                className="events-add-event__btn">
-                <span>Add Event</span>
-            </Link>
+            No Events
         </div>
     )
 
@@ -38,7 +30,8 @@ const Events = (props) => {
                             to={{ pathname: "/event-tags", state: {
                                 addressId: event.addressId,
                                 address: props.location.state.address,
-                                tagInfoId: event.tagInfoId // used for lookup
+                                tagInfoId: event.tagInfoId, // used for lookup
+                                eventTitle: `Event ${ event.datetime ? flipDateFormat(event.datetime.split(" ")[0], true) : "" }` 
                             }}}
                             className="tagging-tracker__event">
                             { props.deleteEventsMode ? <button type="button" id="event-delete-btn">
@@ -56,6 +49,17 @@ const Events = (props) => {
         </div>
     )
 
+    // check if delete event show update rendered events with remaining events
+    useEffect(() => {
+        if (offlineStorage) { // wait for offlineStorage to be ready
+            const remainingEvents = typeof props.location.state.remainingEvents !== "undefined" ?
+                props.location.state.remainingEvents : null;
+            if (remainingEvents) {
+                setEvents(remainingEvents);
+            }
+        }
+    }, []);
+
     // check set any events
     useEffect(() => {
         if (offlineStorage) { // wait for offlineStorage to be ready
@@ -65,7 +69,7 @@ const Events = (props) => {
         }
     }, [offlineStorage]);
 
-    return ( events.length ? renderEvents : renderAddEvent )
+    return ( events.length ? renderEvents : renderNoEvents )
 }
 
 export default Events;

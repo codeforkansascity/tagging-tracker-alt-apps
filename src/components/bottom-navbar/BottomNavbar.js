@@ -1,10 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './BottomNavbar.scss';
+import { deleteEvent } from '../../utils/delete'; // probably bad to do this, add delete logic to a navbar should be global
 
 import syncIcon from './../../assets/icons/svgs/upload.svg';
 import logoutIcon from './../../assets/icons/svgs/switch.svg';
 import property from './../../assets/icons/svgs/property.svg';
+import textDocument from './../../assets/icons/svgs/text-document.svg';
 import calendar from './../../assets/icons/svgs/calendar.svg';
 import addSquare from './../../assets/icons/svgs/add-square.svg';
 import deleteIcon from './../../assets/icons/svgs/delete.svg';
@@ -22,6 +24,8 @@ const BottomNavbar = (props) => {
     const cameraBtn = useRef(null);
     const uploadBtn = useRef(null);
     const history = useHistory();
+
+    const [deletingEvent, setDeletingEvent] = useState(false);
 
     const logout = async () => {
         props.updateLoggingOut(true);
@@ -94,6 +98,27 @@ const BottomNavbar = (props) => {
         document.getElementById('add-tag-file-input').click();
     }
 
+    // bad naming
+    const confirmDeleteEvent = ( eventTitle, addressId, tagInfoId, callback ) => {
+        const shouldDeleteEvent = window.confirm("Delete " + eventTitle + " ?");
+        if (shouldDeleteEvent) {
+            setDeletingEvent(true);
+            deleteEvent(props.offlineStorage, addressId, tagInfoId, callback);
+        }
+    }
+
+    // this is only here because callback doesn't have params
+    const doneDeletingEvent = (remainingEvents) => {
+        setDeletingEvent(false);
+        history.push({
+            pathname: "/events",
+            state: {
+                ...props.location.state,
+                remainingEvents
+            }
+        });
+    }
+
     const renderBottomNavbar = (routeLocation) => {
         console.log('render bottom navbar', routeLocation);
         const address = props.location.state;
@@ -101,6 +126,7 @@ const BottomNavbar = (props) => {
         const tagPath = props.location.pathname === "/tag-info";
         const eventsPath = props.location.pathname === "/events";
         const tagsPath = props.location.pathname === "/event-tags";
+        const eventTagsPath = props.location.pathname === "/event-tags";
 
         switch(routePath) {
             case "/":
@@ -272,6 +298,53 @@ const BottomNavbar = (props) => {
                         className="bottom-navbar__btn fourth">
                         <img src={ addSquare } alt="add tag icon" />
                         <span>Add Picture</span>
+                    </Link>
+                </>
+            case"/event-tags":
+                const eventTitle = props.location.state.eventTitle;
+                const tagInfoId = props.location.state.tagInfoId;
+                return <>
+                    <button onClick= { () => confirmDeleteEvent(eventTitle, address.addressId, tagInfoId, doneDeletingEvent) } ref={ syncBtn } className="bottom-navbar__btn fourth"
+                        type="button" disabled={ props.appOnline ? false : true }>
+                        {deletingEvent
+                            ? <>
+                                <span>Deleting...</span>
+                                <img src={ ajaxLoaderGray } alt="deleting event spinner" />
+                            </>
+                            : <>
+                                <img src={ deleteIcon } alt="delete button icon" />
+                                <span>Delete</span>
+                            </>
+                        }
+                    </button>
+                    <Link
+                        to={{ pathname: "/tag-info", state: {
+                                address: address.address,
+                                addressId: address.addressId, // used for lookup
+                                tagInfoId: props.location.state.tagInfoId
+                        }}}
+                        className="bottom-navbar__btn fourth">
+                        <img src={ textDocument } alt="tag info button icon" />
+                        <span>Tag Info</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/tags", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className={"bottom-navbar__btn toggled " + (eventTagsPath ? "active" : "") }>
+                            <img src={ photo } alt="events button icon" />
+                            <span>Tags</span>
+                    </Link>
+                    <Link
+                        to={{ pathname: "/add-tag", state: {
+                            address: address.address,
+                            addressId: address.addressId, // used for lookup
+                            tagInfoId // unique per event
+                        }}}
+                        className="bottom-navbar__btn fourth">
+                        <img src={ addSquare } alt="add tag icon" />
+                        <span>Add Tag</span>
                     </Link>
                 </>
             default:

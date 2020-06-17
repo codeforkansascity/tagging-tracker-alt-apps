@@ -127,6 +127,38 @@ export const deleteAddress = (props, addressObj, finishedDeletingAddress) => {
     }
 }
 
-export const deleteEvent = (addressId, deleteEventCallBack) => {
-    
+const getCurEvents = (db, addressId) => {
+    return new Promise((resolve, reject) => {
+        db.events.where("addressId").equals(addressId).toArray()
+            .then((tags) => {
+                resolve(tags);
+            })
+            .catch(() => {
+                resolve(null);
+            });
+    });
+}
+
+export const deleteEvent = (db, addressId, tagInfoId, deleteEventCallBack) => {
+    const tagInfo = db.events.where("tagInfoId").equals(tagInfoId);
+    tagInfo.count()
+        .then((count) => {
+            if (count) {
+                tagInfo.delete()
+                    .then(async () => {
+                        return getCurEvents(db, addressId);
+                    })
+                    .then((curEvents) => {
+                        deleteEventCallBack(curEvents);
+                    })
+                    .catch((err) => {
+                        alert('Failed to delete event');
+                        deleteEventCallBack(); // so many of these
+                    });
+            }
+        })
+        .catch((err) => {
+            alert('Failed to delete event');
+            deleteEventCallBack();
+        });
 }
