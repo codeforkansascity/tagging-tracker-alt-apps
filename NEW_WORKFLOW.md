@@ -35,3 +35,25 @@ Hitting save vs. using onblur event doesn't behave the same, looks like it didn'
 - have to trace through all the new "workflows"
 - [ ] clicking on EDIT in navbar of single event view takes you to edit tags whihc then shows all images for an address not just the event
 - [ ] add tag does not show the specific event name but address as a whole
+
+
+### Verify click throughs (navigation through app) specifically going backwards maintains previous state
+#### If not specifically mentioned back works fine
+- address
+    - events
+        - [ ] single event
+            - [ ] navbar
+                - [ ] edit button
+                    - check modifies/saves right image set based on active event
+            - [ ] bottom navbar
+                - [ ] event info
+                - [ ] pictures
+                - [ ] events
+                - [ ] add picture
+        - [ ] owner info
+            - [ ] back test
+                - fail, does not go back to events
+                - save works correctly though
+        - [ ] add event
+            - [ ] issue with save button, due to not using blur event, blur doesn't help
+                - it's the re-render it actually saves but the read-only mode doesn't show the updated values until next load
