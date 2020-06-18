@@ -93,6 +93,14 @@ const Navbar = (props) => {
     }
 
     const editTagInfo = () => {
+        if (props.modifyTagInfo) {
+            history.push({
+                pathname: "/events",
+                state: {
+                    ...props.location.state
+                }
+            });
+        }
         props.toggleModifyTagInfo(!props.modifyTagInfo);
     }
 

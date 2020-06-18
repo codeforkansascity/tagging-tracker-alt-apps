@@ -20,6 +20,7 @@ import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './../events/ev
 const TagInfo = (props) => {
     const [tagInfo, setTagInfo] = useState(null);
     const [tagInfoId, setTagInfoId] = useState(null);
+    const { modifyTagInfo } = props;
 
     // these have to match the order of the keys in tagFields.js
     const tagInfoFieldKeys = {
@@ -154,8 +155,8 @@ const TagInfo = (props) => {
                 const tagInfoId = await addNewTagInfo(addressId, offlineStorage, false, mappedFieldValues);
                 const eventId = await addNewEvent(tagInfoId, addressId, offlineStorage, formatTimeStr, getDateTime);
                 await updateTagInfoEventId(tagInfoId, eventId, offlineStorage);
-                setTagInfoId(tagInfoId);
                 setTagInfo(mappedFieldValues);
+                setTagInfoId(tagInfoId);
             }
         }
     }
@@ -166,16 +167,16 @@ const TagInfo = (props) => {
         if (fieldType === "input") {
             nameValueMap[`option-${mainIndex}`] = null;
             return (
-                <input defaultValue={ tagInfo ? tagInfo[`option-${mainIndex}`] : "" } name={ `option-${mainIndex}` } onBlur={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex]} className="grow" type="text" disabled={ props.modifyTagInfo ? false : true } />
+                <input defaultValue={ tagInfo ? tagInfo[`option-${mainIndex}`] : "" } name={ `option-${mainIndex}` } onKeyUp={ updateTagInfo } onBlur={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex]} className="grow" type="text" disabled={ modifyTagInfo ? false : true } />
             )
         } else if (fieldType === "number") {
             nameValueMap[`option-${mainIndex}`] = null;
             return (
-                <input defaultValue={ tagInfo ? tagInfo[`option-${mainIndex}`] : "" } name={ `option-${mainIndex}` } placeholder="0" onBlur={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex]} className="grow" type="number" min="0" disabled={ props.modifyTagInfo ? false : true } />
+                <input defaultValue={ tagInfo ? tagInfo[`option-${mainIndex}`] : "" } name={ `option-${mainIndex}` } placeholder="0" onKeyUp={ updateTagInfo } onBlur={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex]} className="grow" type="number" min="0" disabled={ modifyTagInfo ? false : true } />
             )
         } else if (fieldType === "date") {
             return (
-                <input defaultValue={ tagInfo ? tagInfo[`option-${mainIndex}`] : "" } name={ `option-${mainIndex}` } onBlur={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex]} className="grow" type="date" min={getDateTime('MM-DD-YYYY')} disabled={ props.modifyTagInfo ? false : true } />
+                <input defaultValue={ tagInfo ? tagInfo[`option-${mainIndex}`] : "" } name={ `option-${mainIndex}` } onKeyUp={ updateTagInfo } onBlur={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex]} className="grow" type="date" min={getDateTime('MM-DD-YYYY')} disabled={ modifyTagInfo ? false : true } />
             )
         } else if (fieldType === "radio" || fieldType === "checkbox") {
             const optionKeys = Object.keys(fieldGroup.options);
@@ -189,8 +190,8 @@ const TagInfo = (props) => {
                                 optionKeys.map((optionKey, index) => {
                                     return (
                                         <span key={index} className="option-group">
-                                            <input checked={ tagInfo ? tagInfo[`option-${mainIndex}-${index}`] : false } onChange={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex].subRefs[index]} id={`option-${mainIndex}-${index}`}
-                                                name={ `option-${mainIndex}-${index}`} type={ fieldType } disabled={ props.modifyTagInfo ? false : true } />
+                                            <input checked={ tagInfo ? tagInfo[`option-${mainIndex}-${index}`] : false } onChange={ updateTagInfo } onKeyUp={ updateTagInfo } ref={tagInfoInputElements.current[mainIndex].subRefs[index]} id={`option-${mainIndex}-${index}`}
+                                                name={ `option-${mainIndex}-${index}`} type={ fieldType } disabled={ modifyTagInfo ? false : true } />
                                             <label htmlFor={`option-${mainIndex}-${index}`}>{ fieldGroup.options[optionKey] }</label>
                                         </span>
                                     )
@@ -202,8 +203,8 @@ const TagInfo = (props) => {
                     return optionKeys.map((optionKey, index) => {
                         return (
                             <span key={index} className="option-group">
-                                <input checked={ tagInfo ? tagInfo[`option-${mainIndex}-${index}`] : false } onChange={ updateTagInfo } id={`option-${mainIndex}-${index}`} name={ nameValueMap[`option-${mainIndex}-${index}`]}
-                                    ref={tagInfoInputElements.current[mainIndex].subRefs[index]} type={ fieldType } disabled={ props.modifyTagInfo ? false : true } />
+                                <input checked={ tagInfo ? tagInfo[`option-${mainIndex}-${index}`] : false } onChange={ updateTagInfo } onKeyUp={ updateTagInfo } id={`option-${mainIndex}-${index}`} name={ nameValueMap[`option-${mainIndex}-${index}`]}
+                                    ref={tagInfoInputElements.current[mainIndex].subRefs[index]} type={ fieldType } disabled={ modifyTagInfo ? false : true } />
                                 <label htmlFor={`option-${mainIndex}-${index}`}>{ fieldGroup.options[optionKey] }</label>
                             </span>
                         )

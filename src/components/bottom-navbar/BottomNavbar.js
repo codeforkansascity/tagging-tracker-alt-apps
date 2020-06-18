@@ -120,7 +120,6 @@ const BottomNavbar = (props) => {
     }
 
     const renderBottomNavbar = (routeLocation) => {
-        console.log('render bottom navbar', routeLocation);
         const address = props.location.state;
         const routePath =  props.baseDir ? routeLocation.pathname.replace(props.baseDir + "/", "") : routeLocation.pathname;
         const tagPath = props.location.pathname === "/tag-info";
@@ -200,7 +199,6 @@ const BottomNavbar = (props) => {
                     </Link>
                 </>
             case "/add-tag":
-                console.log('add tag', props);
                 return <>
                     <button ref={ cameraBtn } onClick={ directCameraClick } className="bottom-navbar__btn quarter caps-blue border small-font" type="button">
                         <span>Use Camera</span>
@@ -334,7 +332,7 @@ const BottomNavbar = (props) => {
         checkIOS();
         addPathClassToBody(props);
         window.removeEventListener('resize', resizeAdjustHeight);
-    });
+    }, []); // try running once on load, seeing problems when soft keyboard goes away/appears on mobile device
 
     return(
         <div className={ getBottomNavbarClasses() }>
