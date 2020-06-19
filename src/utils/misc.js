@@ -26,3 +26,7 @@ export const addPathClassToBody = (props) => {
         document.querySelector('.tagging-tracker__body').style.maxHeight = (window.innerHeight - 52) + "px";
     }
 }
+
+export const truncateText = (text, length, ellipsis) => {
+    return text.substr(0, length) + ((ellipsis && text.length > length) ? '...' : '');
+}

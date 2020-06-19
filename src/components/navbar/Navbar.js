@@ -4,6 +4,7 @@ import './Navbar.scss';
 import { deleteAddress } from '../../utils/delete';
 
 import backArrow from './../../assets/icons/svgs/chevron-blue.svg'; // rotated by CSS
+import { truncateText } from '../../utils/misc';
 
 const Navbar = (props) => {
     const searchAddressInput = useRef(null);
@@ -23,8 +24,8 @@ const Navbar = (props) => {
         } else if (path === "/owner-info") {
             navTitle = "Owner Information";
         } else if (path === "/events") {
-            navTitle = `${address} Events`;
-        } else if (path === "/event-tags") {
+            navTitle = `${truncateText(address,40,true)} Events`;
+        } else if (path === "/event-tags" || path === "/add-tag") {
              navTitle = props.location.state.eventTitle;
         } else {
             navTitle = address;
@@ -37,7 +38,6 @@ const Navbar = (props) => {
         const matchPaths = [
             "/tag-info",
             "/owner-info",
-            "/add-tag",
             "/edit-tags",
             "/events",
             "/event-tags"
@@ -62,6 +62,8 @@ const Navbar = (props) => {
             return addressOutput;
         } else if (path === "/event-tags") {
             return "Events";
+        } else if (path === "/add-tag") {
+            return "Event";
         } else {
             return "Addresses";
         }
@@ -84,7 +86,8 @@ const Navbar = (props) => {
             clearSearch: true,
             address,
             addressId: props.location.state.addressId,
-            tagInfoId: props.location.state.tagInfoId
+            tagInfoId: props.location.state.tagInfoId,
+            eventTitle: (typeof props.location.state.eventTitle ? props.location.state.eventTitle : null)
         };
     }
 
@@ -207,12 +210,12 @@ const Navbar = (props) => {
                 </>;
             case '/view-address':
             case '/edit-tags':
-            case '/add-tag':
             case '/tag-info':
             case '/owner-info':
             case '/events':
             case '/event-tags':
             case '/tags':
+            case '/add-tag':
                 return <>
                     <div className="tagging-tracker__navbar-top view-address edit-tags add-tags">
                         <Link to={{ pathname: getBackPathname(routeLocation.pathname), state: getBackState(routeLocation.pathname, props.location.state.address)}} className="manage-address__back">

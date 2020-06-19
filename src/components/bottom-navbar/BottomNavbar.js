@@ -299,7 +299,8 @@ const BottomNavbar = (props) => {
                         to={{ pathname: "/add-tag", state: {
                             address: address.address,
                             addressId: address.addressId, // used for lookup
-                            tagInfoId // unique per event
+                            tagInfoId, // unique per event
+                            eventTitle
                         }}}
                         className="bottom-navbar__btn fourth">
                         <img src={ addSquare } alt="add tag icon" />
