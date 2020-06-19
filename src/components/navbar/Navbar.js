@@ -25,7 +25,7 @@ const Navbar = (props) => {
             navTitle = "Owner Information";
         } else if (path === "/events") {
             navTitle = `${truncateText(address,40,true)} Events`;
-        } else if (path === "/event-tags" || path === "/add-tag") {
+        } else if (path === "/event-tags" || path === "/add-tag" || path === "/edit-tags") {
              navTitle = props.location.state.eventTitle;
         } else {
             navTitle = address;
@@ -38,7 +38,6 @@ const Navbar = (props) => {
         const matchPaths = [
             "/tag-info",
             "/owner-info",
-            "/edit-tags",
             "/events",
             "/event-tags"
         ];
@@ -62,7 +61,7 @@ const Navbar = (props) => {
             return addressOutput;
         } else if (path === "/event-tags") {
             return "Events";
-        } else if (path === "/add-tag") {
+        } else if (path.indexOf('tag') !== -1) {
             return "Event";
         } else {
             return "Addresses";
@@ -70,12 +69,12 @@ const Navbar = (props) => {
     }
 
     const getBackPathname = (path) => {
-        if (path === "/owner-info" || path === "/edit-tags") {
+        if (path === "/owner-info") {
             return "/view-address";
-        } else if (path === "/tag-info" || path === "/event-tags") {
-            return "/events";
-        } else if (path === "/add-tag") {
+        } else if (path === "/edit-tags") {
             return "/event-tags";
+        } else if (path.indexOf('tag') !== -1) {
+            return "/events";
         } else {
             return "/addresses"
         }
@@ -87,7 +86,8 @@ const Navbar = (props) => {
             address,
             addressId: props.location.state.addressId,
             tagInfoId: props.location.state.tagInfoId,
-            eventTitle: (typeof props.location.state.eventTitle ? props.location.state.eventTitle : null)
+            eventTitle: (typeof props.location.state.eventTitle !== "undefined"
+                ? props.location.state.eventTitle : null)
         };
     }
 
@@ -150,7 +150,9 @@ const Navbar = (props) => {
                 <Link to={{ pathname: "/edit-tags", state: { 
                     address: props.location.state.address,
                     addressId: props.location.state.addressId,
-                    tagInfoId: props.location.state.tagInfoId
+                    tagInfoId: props.location.state.tagInfoId,
+                    eventTitle: (typeof props.location.state.eventTitle !== "undefined"
+                    ? props.location.state.eventTitle : null)
                 }}} className="manage-address__edit-cancel">{
                     isAddTagPath ? "" : (isEditTagsPath ? "Delete" : "Edit")
                 }</Link>
@@ -220,7 +222,7 @@ const Navbar = (props) => {
                     <div className="tagging-tracker__navbar-top view-address edit-tags add-tags">
                         <Link to={{ pathname: getBackPathname(routeLocation.pathname), state: getBackState(routeLocation.pathname, props.location.state.address)}} className="manage-address__back">
                             <img src={ backArrow } alt="back arrow" />
-                        <h4>{ getBackButtonTitle(routeLocation.pathname, props.location.state.address) }</h4>
+                            <h4>{ getBackButtonTitle(routeLocation.pathname, props.location.state.address) }</h4>
                         </Link>
                         <h2 className="manage-address__name">
                             { getNavTitle(routeLocation.pathname, props.location.state.address) }

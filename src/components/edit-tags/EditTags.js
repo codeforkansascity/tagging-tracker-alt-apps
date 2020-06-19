@@ -4,6 +4,7 @@ import './EditTags.scss';
 import { getImagePreviewAspectRatioClass } from './../../utils/image';
 import closeIcon from './../../assets/icons/svgs/close.svg';
 import ajaxLoaderGray from './../../assets/gifs/ajax-loader--gray.gif';
+import { truncateText } from '../../utils/misc';
 
 // TODO this is bad but poor design
 let fileNameOfImageToDelete;
@@ -62,7 +63,7 @@ const EditTags = (props) => {
     const renderDeletePrompt = (addressId, fileName) => {
         return (
             <div className={"tagging-tracker__edit-tags-delete-prompt" + (deletePrompt ? "" : " hidden")}>
-                <h4>Delete Tag {fileName}</h4>
+                <h4>Delete Tag {truncateText(fileName,40,true)}</h4>
                 <p>This will delete all information and photos of the tag</p>
                 <div className="edit-tags-delete-prompt__delete-btns">
                     <button onClick={() => { deleteImage(addressId, fileName) }} className="delete-btns__delete" type="button">Delete</button>

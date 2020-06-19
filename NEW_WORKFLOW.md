@@ -45,18 +45,21 @@ was a bad idea. It's a pain dealing with all the possible render outcomes.
             - [ ] issue with save button, due to not using blur event, blur doesn't help
                 - it's the re-render it actually saves but the read-only mode doesn't show the updated values until next load
 
-#### Verify workflows
+#### Verified workflows
 - [ ] single event
-    - [ ] add picture
-            - [ ] forward (event click)
-                - [x] shows right event
-                - [x] has Events for back title
-                - [x] has images for the event
-                - [ ] edit
-                    - [x] edit shows images under event/modifiable
-                    - [ ] event back/event title displayed correctly
-            - [ ] backward
-                - [x] shows event/back event title in navbar
-                - [ ] navigate backwards(navbar), return to event
-                - [ ] add saves to right event
-                - [ ] view pulls correct images
+    - [x] add/edit tags
+        - click address
+        - click event
+        - click add picture
+        - add picture
+        - save to event
+        - back (Event navbar click)
+        - show event with new picture(s)
+        - edit
+        - show same images with edit
+        - deletes image
+            - [x] file name too long on display
+                - added truncation
+        - back to event
+        - back to events (for address)
+        - back to addresses (home)

@@ -28,5 +28,9 @@ export const addPathClassToBody = (props) => {
 }
 
 export const truncateText = (text, length, ellipsis) => {
+    if (!text) {
+        return "undefined string";
+    }
+
     return text.substr(0, length) + ((ellipsis && text.length > length) ? '...' : '');
 }
