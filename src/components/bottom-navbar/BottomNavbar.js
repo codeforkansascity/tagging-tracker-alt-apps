@@ -280,7 +280,8 @@ const BottomNavbar = (props) => {
                         to={{ pathname: "/tag-info", state: {
                                 address: address.address,
                                 addressId: address.addressId, // used for lookup
-                                tagInfoId: props.location.state.tagInfoId
+                                tagInfoId: props.location.state.tagInfoId,
+                                eventTitle
                         }}}
                         className="bottom-navbar__btn fourth">
                         <img src={ textDocument } alt="tag info button icon" />

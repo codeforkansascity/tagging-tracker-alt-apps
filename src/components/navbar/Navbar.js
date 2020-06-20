@@ -69,7 +69,7 @@ const Navbar = (props) => {
     const getBackPathname = (path) => {
         if (path === "/owner-info") {
             return "/events";
-        } else if (path === "/edit-tags" || path === "/add-tag") {
+        } else if (path === "/edit-tags" || path === "/add-tag" || path === "/tag-info") {
             return "/event-tags";
         } else if (path.indexOf('tag') !== -1) {
             return "/events";
@@ -98,7 +98,9 @@ const Navbar = (props) => {
             history.push({
                 pathname: "/events",
                 state: {
-                    ...props.location.state
+                    ...props.location.state,
+                    eventTitle: (typeof props.location.state.eventTitle !== "undefined"
+                        ? props.location.state.eventTitle : null)
                 }
             });
         }
