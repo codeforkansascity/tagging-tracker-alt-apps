@@ -22,9 +22,9 @@ export const resizeAdjustHeight = () => {
 export const addPathClassToBody = (props) => {
     const curPath = props.location.pathname;
 
-    if (curPath !== "/addresses" || curPath !== "/") {
-        document.querySelector('.tagging-tracker__body').style.maxHeight = (window.innerHeight - 52) + "px";
-    }
+    // if (curPath !== "/addresses" || curPath !== "/") {
+    //     document.querySelector('.tagging-tracker__body').style.maxHeight = (window.innerHeight - 52) + "px";
+    // }
 }
 
 export const truncateText = (text, length, ellipsis) => {
