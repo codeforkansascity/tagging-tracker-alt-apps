@@ -36,8 +36,6 @@ const Navbar = (props) => {
 
     const getBackButtonTitle = (path, address) => {
         const matchPaths = [
-            "/tag-info",
-            "/owner-info",
             "/events",
             "/event-tags"
         ];
@@ -59,7 +57,7 @@ const Navbar = (props) => {
             }
 
             return addressOutput;
-        } else if (path === "/event-tags") {
+        } else if (path === "/event-tags" || path === "/owner-info" || path === "/tag-info") {
             return "Events";
         } else if (path.indexOf('tag') !== -1) {
             return "Event";
@@ -70,8 +68,8 @@ const Navbar = (props) => {
 
     const getBackPathname = (path) => {
         if (path === "/owner-info") {
-            return "/view-address";
-        } else if (path === "/edit-tags") {
+            return "/events";
+        } else if (path === "/edit-tags" || path === "/add-tag") {
             return "/event-tags";
         } else if (path.indexOf('tag') !== -1) {
             return "/events";
