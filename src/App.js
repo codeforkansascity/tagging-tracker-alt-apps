@@ -45,6 +45,7 @@ const App = () => {
 	  * make sure package.json's build dev has the example.com/ path
 	  * 
 	  * update: for the package.json homepage path I had to set the /path-from-domain
+	  * for the software updater to work, update the .env path for the BASE path which is used for cache sync
 	  */
 	const baseName = "";
 
