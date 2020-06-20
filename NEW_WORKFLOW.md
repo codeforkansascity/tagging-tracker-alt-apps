@@ -77,3 +77,8 @@ was a bad idea. It's a pain dealing with all the possible render outcomes.
 
 #### Clean up of related tables
 - [ ] for example delete event, bound images remain
+
+#### Misc
+- [ ] intent to upload/stuff that requires being logged in
+    - prompted not logged in
+    - after logging in does not take you back to what you were doing before
