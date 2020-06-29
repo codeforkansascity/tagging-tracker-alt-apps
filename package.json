@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-dev": "set PUBLIC_URL=http://example.com/sub-folder&& react-scripts build",
+    "build-dev": "set PUBLIC_URL=https://cunninghamwebdd.com/demos/tagging-tracker-newer&& react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

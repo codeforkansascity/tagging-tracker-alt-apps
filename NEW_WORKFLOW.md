@@ -82,3 +82,7 @@ was a bad idea. It's a pain dealing with all the possible render outcomes.
 - [ ] intent to upload/stuff that requires being logged in
     - prompted not logged in
     - after logging in does not take you back to what you were doing before
+
+#### Safari UI testing
+- [ ] height issues
+- [ ] responsive issues

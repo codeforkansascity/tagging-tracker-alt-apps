@@ -331,10 +331,10 @@ const BottomNavbar = (props) => {
     // disabling scaling need to test on iOS
     useEffect(() => {
 	// 	// this modifies the layout/some css classes/styles based on if the user is using iOS/Safari
-    //     window.addEventListener('resize', resizeAdjustHeight);
+        // window.addEventListener('resize', resizeAdjustHeight);
         checkIOS();
         addPathClassToBody(props);
-    //     window.removeEventListener('resize', resizeAdjustHeight);
+        // window.removeEventListener('resize', resizeAdjustHeight);
     }); // try running once on load, seeing problems when soft keyboard goes away/appears on mobile device
 
     return(
