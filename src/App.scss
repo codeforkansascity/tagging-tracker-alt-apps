@@ -56,5 +56,9 @@
     // easier to isolate state within component than to travel up/down eg. through App itself
     &.increase-height {
         max-height: calc(100% - 54px);
-    }
+	}
+	
+	&.full-body-height {
+		max-height: 100%;
+	}
 }

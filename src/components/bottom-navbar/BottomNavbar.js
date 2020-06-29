@@ -122,7 +122,7 @@ const BottomNavbar = (props) => {
     const renderBottomNavbar = (routeLocation) => {
         const address = props.location.state;
         const routePath =  props.baseDir ? routeLocation.pathname.replace(props.baseDir + "/", "") : routeLocation.pathname;
-        const tagPath = props.location.pathname === "/tag-info";
+        const tagInfoPath = props.location.pathname === "/tag-info";
         const eventsPath = props.location.pathname === "/events";
         const tagsPath = props.location.pathname === "/event-tags";
         const eventTagsPath = props.location.pathname === "/event-tags";
@@ -245,7 +245,7 @@ const BottomNavbar = (props) => {
                                 address: address.address,
                                 addressId: address.addressId // used for lookup
                         }}}
-                        className={"bottom-navbar__btn toggled third " + (!(tagPath || eventsPath) ? "active" : "") }>
+                        className={"bottom-navbar__btn toggled third " + (!(tagInfoPath || eventsPath) ? "active" : "") }>
                             <img src={ property } alt="home owner button icon" />
                             <span>Owner Info</span>
                     </Link>
@@ -254,12 +254,13 @@ const BottomNavbar = (props) => {
                                 address: address.address,
                                 addressId: address.addressId // used for lookup
                         }}}
-                        className={ "bottom-navbar__btn toggled third " + (!(eventsPath || tagPath) ? "active" : "") }>
+                        className={ "bottom-navbar__btn toggled third " + (!(eventsPath || tagInfoPath) ? "active" : "") }>
                         <img src={ addSquare } alt="add event button icon" />
                         <span>Add Event</span>
                     </Link>
                 </>
             case"/event-tags":
+            case"/tag-info":
                 const eventTitle = props.location.state.eventTitle;
                 const tagInfoId = props.location.state.tagInfoId;
                 return <>
@@ -278,21 +279,22 @@ const BottomNavbar = (props) => {
                     </button>
                     <Link
                         to={{ pathname: "/tag-info", state: {
-                                address: address.address,
-                                addressId: address.addressId, // used for lookup
-                                tagInfoId: props.location.state.tagInfoId,
-                                eventTitle
+                            address: address.address,
+                            addressId: address.addressId, // used for lookup
+                            tagInfoId: props.location.state.tagInfoId,
+                            eventTitle
                         }}}
-                        className="bottom-navbar__btn fourth">
+                        className={"bottom-navbar__btn fourth " + (tagInfoPath ? "active" : "")}>
                         <img src={ textDocument } alt="tag info button icon" />
                         <span>Event Info</span>
                     </Link>
                     <Link
-                        to={{ pathname: "/tags", state: {
-                                address: address.address,
-                                addressId: address.addressId // used for lookup
+                        to={{ pathname: "/event-tags", state: {
+                            address: address.address,
+                            addressId: address.addressId, // used for lookup
+                            eventTitle
                         }}}
-                        className={"bottom-navbar__btn toggled " + (eventTagsPath ? "active" : "") }>
+                        className={"bottom-navbar__btn fourth " + (eventTagsPath ? "active" : "") }>
                             <img src={ photo } alt="events button icon" />
                             <span>Pictures</span>
                     </Link>
@@ -315,8 +317,7 @@ const BottomNavbar = (props) => {
 
     const getBottomNavbarClasses = () => {
         const floatingBtnPaths = [
-            "/owner-info",
-            "/tag-info"
+            "/owner-info"
         ];
 
         const floatingBtns = floatingBtnPaths.indexOf(props.location.pathname) !== -1;

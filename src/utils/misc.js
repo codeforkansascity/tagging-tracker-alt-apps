@@ -22,6 +22,13 @@ export const resizeAdjustHeight = () => {
 export const addPathClassToBody = (props) => {
     const curPath = props.location.pathname;
 
+    // this is bad direct dom manipulation
+    // if (curPath === "/tag-info") {
+    //     if (!document.querySelector('.tagging-tracker__body').classList.contains('full-body-height')) {
+    //         document.querySelector('.tagging-tracker__body').classList += " full-body-height";
+    //     }
+    // }
+
     // if (curPath !== "/addresses" || curPath !== "/") {
     //     document.querySelector('.tagging-tracker__body').style.maxHeight = (window.innerHeight - 52) + "px";
     // }
