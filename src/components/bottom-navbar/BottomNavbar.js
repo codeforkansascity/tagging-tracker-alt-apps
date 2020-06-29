@@ -292,6 +292,7 @@ const BottomNavbar = (props) => {
                         to={{ pathname: "/event-tags", state: {
                             address: address.address,
                             addressId: address.addressId, // used for lookup
+                            tagInfoId, // unique per event
                             eventTitle
                         }}}
                         className={"bottom-navbar__btn fourth " + (eventTagsPath ? "active" : "") }>

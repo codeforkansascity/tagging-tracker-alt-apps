@@ -10,6 +10,19 @@ export const checkIOS = () => {
 
     if (iOS) {
         document.querySelector('.tagging-tracker__bottom-navbar').classList.add('iOS');
+        document.querySelector('.tagging-tracker__body').classList.add('iOS');
+
+        if (window.location.href.indexOf('events') !== -1) {
+            document.querySelector('.tagging-tracker__body').classList.add('less');
+        }
+
+        if (window.location.href.indexOf('tag-info') !== -1) {
+            document.querySelector('.tagging-tracker__body').classList.add('toggled-navbar');
+        }
+
+        if (window.location.href.indexOf('add-tag') !== -1) {
+            document.querySelector('.tagging-tracker__body').classList.add('add-tag');
+        }
     }
 }
 

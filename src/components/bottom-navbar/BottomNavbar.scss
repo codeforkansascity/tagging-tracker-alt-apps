@@ -29,6 +29,12 @@
         }
     }
 
+    &.iOS {
+        button span {
+            transform: translateY(-3px);
+        }
+    }
+
     .bottom-navbar__btn {
         position: relative;
         @include flex-hor-row-ali-str;
