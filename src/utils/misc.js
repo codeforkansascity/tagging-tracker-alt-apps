@@ -7,12 +7,14 @@
 // I guess Mac has this issue too? That's what I see in Sauce Labs simulator
 export const checkIOS = () => {
     const iOS = /(iPhone|iPod|iPhone Simulator|iPod Simulator|iPad|iPad Simulator|Macintosh)/g.test(navigator.userAgent);
+    console.log('check ran');
 
     if (iOS) {
+        document.querySelector('.tagging-tracker__body').classList = 'tagging-tracker__body'; // clear state
         document.querySelector('.tagging-tracker__bottom-navbar').classList.add('iOS');
         document.querySelector('.tagging-tracker__body').classList.add('iOS');
 
-        if (window.location.href.indexOf('events') !== -1) {
+        if (window.location.href.indexOf('events') !== -1 || window.location.href.indexOf('event-tags') !== -1) {
             document.querySelector('.tagging-tracker__body').classList.add('less');
         }
 

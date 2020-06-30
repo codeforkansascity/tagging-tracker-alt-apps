@@ -38,5 +38,6 @@
     ]
   },
   "homepage": "/",
-  "proxy": "https://api.byx1a2gixtvvnjwxde5y.com"
+  "proxy": "https://api.byx1a2gixtvvnjwxde5y.com",
+  "display": "standalone"
 }
