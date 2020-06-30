@@ -17,8 +17,8 @@ This is going to be ugly... take a bit of work to do. Generally straight forward
 - [x] update sync up client side
 - [x] update mysql db schema (to match Dexie schema)
 - [x] update sync up API side
-- [ ] update sync down API side
-- [ ] update sync down client side
+- [x] update sync down API side
+- [x] update sync down client side
 - [ ] update seed file to reflect new db
     - events, tags, tag_info
 

@@ -83,10 +83,10 @@ const App = () => {
 
 	const setupOfflineStorage = () => {
 		const db = new Dexie("LocalImageDatabase");
-		db.version(3).stores({
+		db.version(4).stores({
 			addresses: "++id,address,lat,lng,created,updated",
 			events: "++,addressId,tagInfoId,tagIds,datetime",
-			tags: "++,fileName,addressId,eventId,meta,datetime",
+			tags: "++,fileName,addressId,eventId,meta,datetime,src,thumbnail_src",
 			ownerInfo: "++,addressId,formData",
 			tagInfo: "++,addressId,eventId,formData"
 		});

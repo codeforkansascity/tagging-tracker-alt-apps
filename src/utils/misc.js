@@ -7,7 +7,6 @@
 // I guess Mac has this issue too? That's what I see in Sauce Labs simulator
 export const checkIOS = () => {
     const iOS = /(iPhone|iPod|iPhone Simulator|iPod Simulator|iPad|iPad Simulator|Macintosh)/g.test(navigator.userAgent);
-    console.log('check ran');
 
     if (iOS) {
         document.querySelector('.tagging-tracker__body').classList = 'tagging-tracker__body'; // clear state
