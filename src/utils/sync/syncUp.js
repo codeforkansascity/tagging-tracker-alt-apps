@@ -128,6 +128,8 @@ const bundleData = async (props) => {
                     bundledData['deletedAddresses'] = deletedAddresses;
                 }
 
+                console.log(bundledData);
+
                 resolve(bundledData);
             } else {
                 resolve(bundledData);

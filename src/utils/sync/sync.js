@@ -12,7 +12,7 @@ const isLocalStorageEmpty = async (props) => {
     // so an address has to exist before you can add photos/owner/tag info
     return new Promise(resolve => {
         localStorage.addresses.count().then((count) => {
-            if (props.deletedAddresses.length || count > 0) {
+            if ((props.deletedAddresses && props.deletedAddresses.length) || count > 0) {
                 resolve(false);
             } else {
                 resolve(true);
