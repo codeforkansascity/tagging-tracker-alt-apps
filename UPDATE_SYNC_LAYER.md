@@ -19,6 +19,10 @@ This is going to be ugly... take a bit of work to do. Generally straight forward
 - [x] update sync up API side
 - [x] update sync down API side
 - [x] update sync down client side
+- [x] update deployed api
+    - update db schema
+    - update files
+    - reload systemd
 - [ ] update seed file to reflect new db
     - events, tags, tag_info
 
