@@ -148,9 +148,13 @@
                 width: 100%;
             }
 
+            label {
+                width: calc(100% - 1em);
+            }
+
             span:not(:first-of-type) {
                 input {
-                    flex: 0;
+                    flex: auto;
                 }
             }
         }

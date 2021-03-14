@@ -113,17 +113,4 @@
 			max-height: calc(100% - 45px); // 235 alternate
 		}
 	}
-v
-	// shouldn't be here but not sure how to apply css in child from a parent class
-	&.iOS {
-		.tag-info-field-row.full-column-left {
-			input {
-				flex: auto !important; // ahh yes the good stuff
-			}
-
-			label {
-				width: calc(100% - 1em);
-			}
-		}
-	}
 }
