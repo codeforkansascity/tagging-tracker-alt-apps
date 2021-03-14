@@ -1,6 +1,22 @@
 Investigate some mechanism to check remote side for changes.
 Somehow ping device to say "update available"
 
+### 03/14/2021
+- [ ] bigger font
+  - made some updates on this, when simulated at scale in iPhone 11 the font is much smaller
+  - see feedback
+- [ ] download report feature
+- [ ] acct change request
+- [ ] check auto fill in iPhone from GMaps
+- [x] stay logged in
+  - fixed by persisting token in db also increased token life
+- [ ] event type fixes (bullet point flex problem in Safari)
+  - fixed in Safari... doesn't work in iPhone 11?
+- [x] bottom navbar cutoff, wrote fix for iPhone 11
+- [ ] number select for number of tags
+  - seems to be text-based
+- [ ] automatically edit event screen(state issue hence need to hit edit, has to exist first before editing)
+
 ### 03/08/2021
 Noting problems in Safari
 

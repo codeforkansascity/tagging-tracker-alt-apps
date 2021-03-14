@@ -40,6 +40,30 @@
 
 	&.safari-mod{
 		height: calc(100vh - 115px);
+
+		// increase font size for bottom navbar in iPhone 11
+		.tagging-tracker__bottom-navbar {
+			button, a {
+				img {
+					width: 0.9rem;
+					height: 0.9rem;
+				}
+
+				span {
+					font-size: 1.125rem;
+				}
+			}
+		}
+
+		.tagging-tracker__address-input-modal {
+			p {
+				font-size: 1rem;
+			}
+
+			input {
+				font-size: 1rem;
+			}
+		}
 	}
 }
 
@@ -89,7 +113,7 @@
 			max-height: calc(100% - 45px); // 235 alternate
 		}
 	}
-
+v
 	// shouldn't be here but not sure how to apply css in child from a parent class
 	&.iOS {
 		.tag-info-field-row.full-column-left {

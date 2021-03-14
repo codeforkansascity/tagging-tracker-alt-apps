@@ -227,6 +227,17 @@ const App = () => {
                navigator.userAgent.indexOf('CriOS') == -1 &&
                navigator.userAgent.indexOf('FxiOS') == -1;
 
+			// keep these changes, will look bad in regular safari
+			// but xcode simulator iPhone is the target
+			if (
+				ttBody
+				&& !ttBody.classList.contains('safari-mod')
+				&& isSafari
+				&& !(navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches))
+			) {
+				ttBody.classList = ttBody.classList + ' safari-mod';
+			}
+
 			window.removeEventListener('load', () => {});
 		});
 	});

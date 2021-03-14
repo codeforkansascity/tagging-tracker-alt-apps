@@ -291,7 +291,7 @@ const BottomNavbar = (props) => {
                         }}}
                         className={"bottom-navbar__btn fourth " + (tagInfoPath ? "active" : "")}>
                         <img src={ textDocument } alt="tag info button icon" />
-                        <span>Event Info</span>
+                        <span>Info</span>
                     </Link>
                     <Link
                         to={{ pathname: "/event-tags", state: {
@@ -303,7 +303,7 @@ const BottomNavbar = (props) => {
                         className={"bottom-navbar__btn fourth " + (eventTagsPath ? "active" : "") + (tagInfoId ? "" : "disabled")}
                         disabled={ tagInfoId ? false : true }>
                             <img src={ photo } alt="events button icon" />
-                            <span>Pictures</span>
+                            <span>Tags</span>
                     </Link>
                     <Link
                         to={{ pathname: "/add-tag", state: {
@@ -314,7 +314,7 @@ const BottomNavbar = (props) => {
                         }}}
                         className={"bottom-navbar__btn fourth "  + (tagInfoId ? "" : "disabled")}>
                         <img src={ addSquare } alt="add tag icon" />
-                        <span>Add Picture</span>
+                        <span>Add Tag</span>
                     </Link>
                 </>
             default:
