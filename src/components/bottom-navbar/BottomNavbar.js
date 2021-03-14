@@ -16,6 +16,7 @@ import edit from './../../assets/icons/svgs/pencil.svg';
 import photo from './../../assets/icons/svgs/photo.svg';
 
 import { syncUserData, deleteLocalData } from '../../utils/sync/sync';
+import { checkIOS } from '../../utils/misc';
 
 const BottomNavbar = (props) => {
     const syncBtn = useRef(null);
@@ -334,6 +335,11 @@ const BottomNavbar = (props) => {
 
         return "tagging-tracker__bottom-navbar";
     }
+
+    // disabling scaling need to test on iOS
+    useEffect(() => {
+        checkIOS();
+    });
 
     return(
         <div className={ getBottomNavbarClasses() }>
