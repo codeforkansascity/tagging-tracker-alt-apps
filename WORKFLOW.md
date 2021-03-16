@@ -1,3 +1,4 @@
+```
 +-- Addresses
   --- Login
   --- Drop down menu
@@ -9,5 +10,5 @@
     +-- Add/edit event
       +-- Info
       +-- Tags
-
+```
 Not shown are the sub-screens like delete
