@@ -5,10 +5,10 @@
   --- Modal add address
 +-- Address
   +-- Events
-    +-- Owner Info
+    --- Owner Info
     +-- Events
-    +-- Add/edit event
-      +-- Info
-      +-- Tags
+      +-- Add/edit event
+        +-- Info
+        +-- Tags
 ```
 Not shown are the sub-screens like delete
