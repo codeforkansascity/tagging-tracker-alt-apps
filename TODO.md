@@ -1,0 +1,16 @@
+- [x] figure out router
+- [ ] build base components
+  - [ ] navbar
+    - [ ] addresses navbar (has search and gear menu)
+    - [ ] basic title type navbar
+  - [ ] body
+  - [ ] bottom navbar
+- [ ] build out screens
+- [ ] add storage probably with sqlite
+- [ ] connect with Node backend
+- [ ] add login state
+- [ ] add s3 sync
+- [ ] test
+- [ ] deploy to app store
+- [ ] pull down in simulator and test
+- [ ] have real iPhone 11 test it
