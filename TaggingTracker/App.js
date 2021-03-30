@@ -1,9 +1,6 @@
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
  */
 
 import React from 'react';
@@ -16,12 +13,16 @@ import {
   View,
 } from 'react-native';
 import {NativeRouter, Route, Link} from 'react-router-native';
+import SearchNavbar from './components/SearchNavbar.js';
+
+// the SafeAreaView/StatusBar below is primarily just for the notch padding
 
 const App = () => {
   return (
     <NativeRouter>
       <SafeAreaView>
         <StatusBar />
+        {/* <SearchNavbar /> */}
         <View style={styles.body}>
           <Route path="/login">
             <Text>Yo</Text>

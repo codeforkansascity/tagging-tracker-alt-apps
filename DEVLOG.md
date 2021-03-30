@@ -17,6 +17,11 @@ One of the main things I'd like to avoid(along with past problems) in this new a
 
 I'll have to look at the old ToDo lists/problems I noted in the repo
 
+### 03/30/2021
+Started the basic structure up. Primarily focusing on developing all the screens at the moment/following with basic routing. Then will do local state/data storage with sqlite and finally interface with the Node API.
+
+Left on building out the navbars pretty much have to match the screenshots of existing app
+
 ### 03/27/2021
 
 So I think I'll first work on the navbar, this changes based on route, I will get routing down too.
