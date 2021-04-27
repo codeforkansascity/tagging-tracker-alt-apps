@@ -21,6 +21,15 @@ I'll have to look at the old ToDo lists/problems I noted in the repo
 Going to make PNGs of the SVGS sucks but whatever... I tried to get the SVG stuff to work but soy tonto.
 Then I'll do the base layout for the search-type top navbar.
 
+References:
+https://reactnative.dev/docs/images
+https://reactnative.dev/docs/pixelratio
+https://stackoverflow.com/questions/34493372/what-is-the-default-unit-of-style-in-react-native
+https://stackoverflow.com/questions/33628677/react-native-responsive-font-size
+
+Starting to look like an app again... ehh slow progress today
+<img src="./devlog-imgs/04-26-2021.png" alt="burnt" width="300px" />
+
 ### 04/25/2021
 Slow progress... took up a new side job... will start to get going, hard starting from scratch.
 
