@@ -6,6 +6,14 @@
   - [ ] body
   - [ ] bottom navbar
 - [ ] build out screens
+  - [ ] login
+  - [ ] address-events
+    - [ ] search navbar
+    - [ ] body
+    - [ ] bottom navbar
+  - [ ] event-owner-info
+  - [ ] event-tags
+  - [ ] event-view
 - [ ] add storage probably with sqlite
 - [ ] connect with Node backend
 - [ ] add login state

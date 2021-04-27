@@ -17,6 +17,11 @@ One of the main things I'd like to avoid(along with past problems) in this new a
 
 I'll have to look at the old ToDo lists/problems I noted in the repo
 
+### 04/25/2021
+Slow progress... took up a new side job... will start to get going, hard starting from scratch.
+
+Can't render SVGs directly in RN that's great
+
 ### 03/30/2021
 Started the basic structure up. Primarily focusing on developing all the screens at the moment/following with basic routing. Then will do local state/data storage with sqlite and finally interface with the Node API.
 
