@@ -1,4 +1,16 @@
 - [x] figure out router
+- [x] make PNG icons 100px by 100px
+  - [x] blue plus
+  - [x] gear
+  - [x] cloud
+  - [x] logout
+  - [x] search
+  - [x] blue left arrow
+  - [x] home
+  - [x] plus in box
+  - [x] trash
+  - [x] picture
+  - [x] doc
 - [ ] build base components
   - [ ] navbar
     - [ ] addresses navbar (has search and gear menu)
