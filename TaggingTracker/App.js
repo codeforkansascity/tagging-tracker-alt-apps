@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import {NativeRouter, Route, Link} from 'react-router-native';
-import SearchNavbar from './components/SearchNavbar.js';
+import AddressEvents from './screens/address-events/AddressEvents.js';
 
 // the SafeAreaView/StatusBar below is primarily just for the notch padding
 
@@ -24,12 +24,15 @@ const App = () => {
         <StatusBar />
         {/* <SearchNavbar /> */}
         <View style={styles.body}>
-          <Route path="/login">
-            <Text>Yo</Text>
+          <Route path="/">
+            <AddressEvents />
           </Route>
-          <Link to={'/login'}>
+          {/* <Route path="/login">
+            <Text>Yo</Text>
+          </Route> */}
+          {/* <Link to={'/login'}>
             <Text>Hello</Text>
-          </Link>
+          </Link> */}
         </View>
       </SafeAreaView>
     </NativeRouter>

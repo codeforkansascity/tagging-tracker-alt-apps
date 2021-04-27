@@ -12,6 +12,7 @@ target 'TaggingTracker' do
     :hermes_enabled => false
   )
 
+
   target 'TaggingTrackerTests' do
     inherit! :complete
     # Pods for testing

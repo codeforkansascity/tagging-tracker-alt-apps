@@ -4,12 +4,13 @@ import {View, Text, StyleSheet} from 'react-native';
 const SearchNavbar = () => {
   return (
     <View>
-      <Text>standard navbar</Text>
+      <View>
+        <Text>search navbar</Text>
+      </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});
 
 export default SearchNavbar;
