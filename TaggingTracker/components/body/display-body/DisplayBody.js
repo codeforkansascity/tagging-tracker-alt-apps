@@ -4,7 +4,6 @@ import {normalize} from '../../../utils/styling.js';
 
 const DisplayBody = props => {
   const {components, miscStyles} = props;
-  console.log(components);
   return <View style={styles.container}>{components}</View>;
 };
 

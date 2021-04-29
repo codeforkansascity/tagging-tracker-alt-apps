@@ -28,6 +28,10 @@ Before it actually works.
 
 Gotta loop the mock sample event data to make the initial rows, going with route id approach
 
+Gonna bust it out, little component
+
+There's no bottom navigation in iOS this is a good thing. Just threw me off as I got stuck between routes/couldn't get back. Just refresh until the rest of the UI is built.
+
 ### 04/26/2021
 Going to make PNGs of the SVGS sucks but whatever... I tried to get the SVG stuff to work but soy tonto.
 Then I'll do the base layout for the search-type top navbar.
