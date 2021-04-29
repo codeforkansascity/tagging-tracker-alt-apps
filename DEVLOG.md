@@ -19,7 +19,14 @@ I'll have to look at the old ToDo lists/problems I noted in the repo
 
 ### 04/28/2021
 Feeling weak lately not sure why
+
 Be like the movie Holes `"I'm tired grandpa!"` and he's like `"That's too damn bad! You keep diggin!"`
+
+Probably not advisable but I'm going for "rapid feels" development. As in will get a lot of the screens/UI done first.
+
+Before it actually works.
+
+Gotta loop the mock sample event data to make the initial rows, going with route id approach
 
 ### 04/26/2021
 Going to make PNGs of the SVGS sucks but whatever... I tried to get the SVG stuff to work but soy tonto.

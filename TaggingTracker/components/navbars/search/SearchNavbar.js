@@ -7,7 +7,7 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
-import {normalize} from '../../utils/styling.js';
+import {normalize} from '../../../utils/styling.js';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const SearchNavbar = () => {
@@ -22,18 +22,18 @@ const SearchNavbar = () => {
       <View style={styles.flexRow}>
         <Image
           style={styles.plusIcon}
-          source={require('../../assets/icons/pngs/plus-blue.png')}
+          source={require('../../../assets/icons/pngs/plus-blue.png')}
         />
         <Text style={styles.title}>Addresses</Text>
         <Image
           style={styles.blackGear}
-          source={require('../../assets/icons/pngs/black-gear.png')}
+          source={require('../../../assets/icons/pngs/black-gear.png')}
         />
       </View>
       <View style={styles.searchInputContainer}>
         <Image
           style={styles.searchIcon}
-          source={require('../../assets/icons/pngs/search-gray.png')}
+          source={require('../../../assets/icons/pngs/search-gray.png')}
         />
         <TextInput
           style={styles.searchInput}
