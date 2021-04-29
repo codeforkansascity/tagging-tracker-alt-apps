@@ -41,8 +41,6 @@ const App = () => {
 
 const styles = StyleSheet.create({
   body: {
-    paddingLeft: 10,
-    paddingRight: 10,
   },
 });
 

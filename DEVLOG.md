@@ -17,6 +17,10 @@ One of the main things I'd like to avoid(along with past problems) in this new a
 
 I'll have to look at the old ToDo lists/problems I noted in the repo
 
+### 04/28/2021
+Feeling weak lately not sure why
+Be like the movie Holes `"I'm tired grandpa!"` and he's like `"That's too damn bad! You keep diggin!"`
+
 ### 04/26/2021
 Going to make PNGs of the SVGS sucks but whatever... I tried to get the SVG stuff to work but soy tonto.
 Then I'll do the base layout for the search-type top navbar.
