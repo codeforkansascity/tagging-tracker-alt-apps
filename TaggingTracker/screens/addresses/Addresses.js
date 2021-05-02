@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import SearchNavbar from '../../components/navbars/search/SearchNavbar.js';
 import AddressRow from '../../components/body/address-row/AddressRow.js';
 import DisplayBody from '../../components/body/display-body/DisplayBody.js';
+import BottomNavbarTwoCol from '../../components/navbars/bottom-two-col/BottomNavbarTwoCol.js';
 
 const Addresses = () => {
   const mockAddresses = [
@@ -21,7 +22,7 @@ const Addresses = () => {
   ];
 
   return (
-    <View>
+    <View style={styles.container}>
       <SearchNavbar />
       <DisplayBody
         components={mockAddresses.map((address, index) => (
@@ -29,10 +30,15 @@ const Addresses = () => {
         ))}
         miscStyles={''}
       />
+      <BottomNavbarTwoCol />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default Addresses;

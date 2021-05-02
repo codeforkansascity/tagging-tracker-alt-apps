@@ -17,6 +17,15 @@ One of the main things I'd like to avoid(along with past problems) in this new a
 
 I'll have to look at the old ToDo lists/problems I noted in the repo
 
+### 05/01/2021
+some California YT channel "Lessss gooooooo..."
+
+Yay... back to square one.
+
+It's cool flex works in RN though
+
+<img src="./devlog-imgs/05-01-2021.png" width="300px"/>
+
 ### 04/28/2021
 Feeling weak lately not sure why
 

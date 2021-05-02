@@ -37,6 +37,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   body: {
+    height: '100%',
   },
 });
 

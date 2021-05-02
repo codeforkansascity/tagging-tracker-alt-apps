@@ -14,3 +14,11 @@ export function normalize(size) {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
   }
 }
+
+export const globalStyles = {
+  flexRow: {
+    display: 'flex',
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+  },
+};
