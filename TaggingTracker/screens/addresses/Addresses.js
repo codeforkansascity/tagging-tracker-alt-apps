@@ -4,6 +4,7 @@ import SearchNavbar from '../../components/navbars/search/SearchNavbar.js';
 import AddressRow from '../../components/body/address-row/AddressRow.js';
 import DisplayBody from '../../components/body/display-body/DisplayBody.js';
 import BottomNavbarTwoCol from '../../components/navbars/bottom-two-col/BottomNavbarTwoCol.js';
+import BottomNavbarOneCol from '../../components/navbars/bottom-one-col/BottomNavbarOneCol.js';
 
 const Addresses = () => {
   const mockAddresses = [
@@ -21,6 +22,8 @@ const Addresses = () => {
     },
   ];
 
+  const isLoggedIn = false;
+
   return (
     <View style={styles.container}>
       <SearchNavbar />
@@ -30,7 +33,7 @@ const Addresses = () => {
         ))}
         miscStyles={''}
       />
-      <BottomNavbarTwoCol />
+      {isLoggedIn ? <BottomNavbarTwoCol /> : <BottomNavbarOneCol />}
     </View>
   );
 };

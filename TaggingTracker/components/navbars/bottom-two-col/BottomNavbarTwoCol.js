@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Link} from 'react-router-native';
 import {normalize, globalStyles} from '../../../utils/styling.js';
 
@@ -22,9 +22,9 @@ const BottomNavbarTwoCol = () => {
   return (
     <View style={styles.navbarRow}>
       {navbarItems.map((navbarItem, index) => (
-        <View key={index} style={styles.iconTextRow}>
+        <TouchableOpacity key={index} style={styles.iconTextRow}>
           <Image style={styles.icon} source={navbarItem.icon} />
-          {navbarItems.fcn ? (
+          {navbarItem.fcn ? (
             <Text>{navbarItem.text}</Text>
           ) : (
             <Link
@@ -34,7 +34,7 @@ const BottomNavbarTwoCol = () => {
               <Text style={styles.addressText}>{navbarItem.text}</Text>
             </Link>
           )}
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

@@ -17,12 +17,15 @@
     - [ ] basic title type navbar
   - [ ] body
   - [ ] bottom navbar
+    - [x] two col
+    - [ ] one col
+    - [ ] four col
 - [ ] build out screens
   - [ ] login
-  - [ ] address-events
-    - [ ] search navbar
-    - [ ] body
-    - [ ] bottom navbar
+  - [x] address-events
+    - [x] search navbar
+    - [x] body
+    - [x] bottom navbar (two col)
   - [ ] event-owner-info
   - [ ] event-tags
   - [ ] event-view
