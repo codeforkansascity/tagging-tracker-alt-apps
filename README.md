@@ -84,6 +84,8 @@ Note: if the url has a subdirectory eg. `domain.com/sub-directory/app-base-path`
 #### Note about deployment
 If you have a base domain with a sub directory eg. `https://domain.com/subdirectory/` this will be problematic because the routes of the app are only one level deep, so that `/subdirectory/` path will not be recognized as one of the routes that render the pages. This is mentioned above regarding changing `App.js` and `package.json`.
 
+Also note: the gear icon that pulls down new code manually to update the PWA is based on a domain (that I currently run). So a new build pushed up to docs should be copied over to that domain as well. The App checks if that URL exists/has content before overwriting itself.
+
 ### Client-side usage/installation
 Note that you can't add to homescreen from incognito. Also for iOS only Safari can add to home screen.
 
