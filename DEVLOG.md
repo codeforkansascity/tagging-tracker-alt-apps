@@ -26,6 +26,8 @@ It's cool flex works in RN though
 
 <img src="./devlog-imgs/05-01-2021.png" width="300px"/>
 
+So... one of the things I have put off is setting up NGINX with Let's Encrypt... I've been manually generating certs like a dunce. Anyway the emails for my server host went to spam so I was not aware that the API server for this app was taken down. I gotta set that back again... hopefully it is as easy as cloning the repo, updating env configs, installing some stuff(like db and AWS AMI) and it should be good to go... no Docker yet... that's another thing supposed to have.
+
 ### 04/28/2021
 Feeling weak lately not sure why
 

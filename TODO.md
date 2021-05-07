@@ -1,3 +1,10 @@
+- [x] get API back up
+  - [x] rent VPS
+  - [x] clone repo
+  - [x] install deps
+  - [x] point domain to this server's ip
+  - [x] generate SSL cert for it with Let's Encrypt
+  - [x] run it and test against deployed `TaggingTracker.org` app
 - [x] figure out router
 - [x] make PNG icons 100px by 100px
   - [x] blue plus
@@ -18,10 +25,10 @@
   - [ ] body
   - [ ] bottom navbar
     - [x] two col
-    - [ ] one col
+    - [x] one col
     - [ ] four col
 - [ ] build out screens
-  - [ ] login
+  - [x] login
   - [x] address-events
     - [x] search navbar
     - [x] body
