@@ -35,8 +35,6 @@ const styles = StyleSheet.create({
     ...globalStyles.flexRow,
     justifyContent: 'center',
     backgroundColor: '#eee',
-    paddingTop: normalize(12),
-    paddingBottom: normalize(12),
   },
   icon: {
     width: normalize(14),
@@ -46,6 +44,8 @@ const styles = StyleSheet.create({
   link: {
     width: '100%',
     alignItems: 'center',
+    paddingTop: normalize(12),
+    paddingBottom: normalize(12),
   },
   iconTextRow: {
     ...globalStyles.flexRow,
