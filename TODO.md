@@ -1,45 +1,18 @@
-- [x] get API back up
-  - [x] rent VPS
-  - [x] clone repo
-  - [x] install deps
-  - [x] point domain to this server's ip
-  - [x] generate SSL cert for it with Let's Encrypt
-  - [x] run it and test against deployed `TaggingTracker.org` app
-- [x] figure out router
-- [x] make PNG icons 100px by 100px
-  - [x] blue plus
-  - [x] gear
-  - [x] cloud
-  - [x] logout
-  - [x] search
-  - [x] blue left arrow
-  - [x] home
-  - [x] plus in box
-  - [x] trash
-  - [x] picture
-  - [x] doc
-- [ ] build base components
-  - [ ] navbar
-    - [ ] addresses navbar (has search and gear menu)
-    - [ ] basic title type navbar
-  - [ ] body
-  - [ ] bottom navbar
-    - [x] two col
-    - [x] one col
-    - [ ] four col
-- [ ] build out screens
-  - [x] login
-  - [x] address-events
-    - [x] search navbar
-    - [x] body
-    - [x] bottom navbar (two col)
-  - [ ] event-owner-info
-  - [ ] event-tags
-  - [ ] event-view
-- [ ] add storage probably with sqlite
-- [ ] connect with Node backend
-- [ ] add login state
-- [ ] add s3 sync
+- [ ] all screen components
+  - [ ] event info form
+    - [ ] need to make generic "radio button" component
+  - [ ] owner info form
+  - [ ] display dynamic image thumbnail (how blob?)
+  - [ ] bottom four col navbar
+  - [ ] modal component
+    - [ ] address input
+    - [ ] generic alerting system like for tag delete
+- [ ] make all screens
+- [ ] wire up logic/routing/state with screens
+  - [ ] add storage probably with sqlite
+  - [ ] connect with Node backend
+  - [ ] add login state
+  - [ ] add s3 sync
 - [ ] test
 - [ ] deploy to app store
 - [ ] pull down in simulator and test

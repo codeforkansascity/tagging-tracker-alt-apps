@@ -17,6 +17,16 @@ One of the main things I'd like to avoid(along with past problems) in this new a
 
 I'll have to look at the old ToDo lists/problems I noted in the repo
 
+### DOOOOOOOO
+Have to make a Link "wrapper" thing with the icon zIndexed under the text
+Due to the Link not being able to wrap an icon with the text
+
+### 05/17/2021
+
+Back at it again. Going to work on a form.
+Need to see if I have to use react-navigation over react-router-native
+Having problems extracting route param to use on screen
+
 ### 05/01/2021
 some California YT channel "Lessss gooooooo..."
 

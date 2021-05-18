@@ -1,7 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import StandardNavbar from '../../components/navbars/standard/StandardNavbar.js';
-const AddressEvents = () => {
+import DisplayBody from '../../components/body/display-body/DisplayBody.js';
+import BottomNavbarTwoCol from '../../components/navbars/bottom-two-col/BottomNavbarTwoCol.js';
+
+const AddressEvents = props => {
+  const {addressId} = props.addressData;
   const navbarSettings = {
     backLink: '/',
     topLeftText: 'Partial address',
@@ -15,6 +19,23 @@ const AddressEvents = () => {
   return (
     <View style={styles.container}>
       <StandardNavbar settings={navbarSettings} />
+      <DisplayBody components={[]} miscStyles={''} />
+      <BottomNavbarTwoCol
+        navbarItems={[
+          {
+            icon: require('../../assets/icons/pngs/property.png'),
+            text: 'Owner Info',
+            link: `/owner-info/${addressId}`,
+            fcn: '',
+          },
+          {
+            icon: require('../../assets/icons/pngs/add-square.png'),
+            text: 'Add Event',
+            link: '/add-event',
+            fcn: '',
+          },
+        ]}
+      />
     </View>
   );
 };

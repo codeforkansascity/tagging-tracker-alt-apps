@@ -3,8 +3,8 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Link} from 'react-router-native';
 import {normalize, globalStyles} from '../../../utils/styling.js';
 
-const BottomNavbarTwoCol = () => {
-  const navbarItems = [
+const BottomNavbarTwoCol = props => {
+  const {navbarItems} = props || [
     {
       icon: require('../../../assets/icons/pngs/upload.png'),
       text: 'Sync',
@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
     ...globalStyles.flexRow,
     width: '50%',
     justifyContent: 'center',
+  },
+  link: {
+    borderWidth: 1,
+    borderColor: 'red',
   },
 });
 

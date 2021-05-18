@@ -16,6 +16,7 @@ import {NativeRouter, Route} from 'react-router-native';
 import Addresses from './screens/addresses/Addresses.js';
 import AddressEvents from './screens/address-events/AddressEvents.js';
 import Login from './screens/login/Login.js';
+import OwnerInfo from './screens/owner-info/OwnerInfo.js';
 
 // the SafeAreaView/StatusBar below is primarily just for the notch padding
 
@@ -29,13 +30,16 @@ const App = () => {
             <Addresses />
           </Route>
           <Route path="/events/:addressId">
-            <AddressEvents />
+            <AddressEvents addressData={{addressId: 1}} />
           </Route>
           <Route path="/address-event/:eventId">
             <Text>Address events</Text>
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/owner-info/:addressId">
+            <OwnerInfo />
           </Route>
         </View>
       </SafeAreaView>
