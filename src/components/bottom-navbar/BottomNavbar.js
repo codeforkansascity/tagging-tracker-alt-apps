@@ -202,7 +202,7 @@ const BottomNavbar = (props) => {
             case "/add-tag":
                 return <>
                     <button ref={ cameraBtn } onClick={ directCameraClick } className="bottom-navbar__btn quarter caps-blue border small-font" type="button">
-                        <span>Use Camera</span>
+                        <span>Camera</span>
                     </button>
                     <button ref={ uploadBtn } onClick={ uploadImages } className="bottom-navbar__btn quarter caps-blue border small-font" type="button" disabled={ props.loadedPhotos.length ? false : true }>
                         {props.uploadInProgress
@@ -225,7 +225,7 @@ const BottomNavbar = (props) => {
                                     <img src={ ajaxLoaderBlue } alt="saving spinner" />
                                 </>
                                 : <>
-                                    <span>Save To Device</span>
+                                    <span>On Device</span>
                                 </>
                             }
                     </button>
