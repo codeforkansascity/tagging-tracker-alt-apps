@@ -39,11 +39,19 @@
   }
 
   &.iOS {
-    height: calc(100vh - 115px);
+		height: calc(100vh - 115px);
+
+		@media all and (display-mode: standalone) {
+    	height: 100vh;
+		}
   }
 
   &.safari-mod {
     height: calc(100vh - 115px);
+
+		@media all and (display-mode: standalone) {
+    	height: 100vh;
+		}
 
     // increase font size for bottom navbar in iPhone 11
     .tagging-tracker__bottom-navbar {

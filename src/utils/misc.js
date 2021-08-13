@@ -17,8 +17,6 @@ export const checkIOS = (returnString) => {
     const iOS = /(iPhone|iPod|iPhone Simulator|iPod Simulator|iPad|iPad Simulator|Macintosh)/g.test(navigator.userAgent);
     const isChrome = !!window.chrome;
 
-    console.log('isChrome', isChrome);
-
     if (iOS) {
         if (returnString) {
             // means Chrome
