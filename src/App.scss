@@ -1,116 +1,149 @@
 @import './assets/styles/flex-rules.scss';
 
 .tagging-tracker {
-	@include flex-ver-col;
-	align-items: flex-start;
-	justify-content: flex-start;
-	height: 100vh;
+  @include flex-ver-col;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100vh;
 
-	// attempt for iOS due to bottom navbar taking up height from browser/overlapping footer
-	// _::-webkit-full-page-media, _:future, :root .safari_only {
-	//   padding-bottom: 115px; //resize 
-	// }
+  // attempt for iOS due to bottom navbar taking up height from browser/overlapping footer
+  // _::-webkit-full-page-media, _:future, :root .safari_only {
+  //   padding-bottom: 115px; //resize 
+  // }
 
-	@font-face {
-		font-family: "Roboto Bold";
-		src: url("./assets/fonts/Roboto/Roboto-Bold.ttf");
-	}
-	@font-face {
-		font-family: "Roboto Italic";
-		src: url("./assets/fonts/Roboto/Roboto-Italic.ttf");
-	}
-	@font-face {
-		font-family: "Roboto Medium";
-		src: url("./assets/fonts/Roboto/Roboto-Medium.ttf");
-	}
-	@font-face {
-		font-family: "Roboto Regular";
-		src: url("./assets/fonts/Roboto/Roboto-Regular.ttf");
-	}
-	@font-face {
-		font-family: "Roboto Thin";
-		src: url("./assets/fonts/Roboto/Roboto-Thin.ttf");
-	}
+  @font-face {
+    font-family: "Roboto Bold";
+    src: url("./assets/fonts/Roboto/Roboto-Bold.ttf");
+  }
+  @font-face {
+    font-family: "Roboto Italic";
+    src: url("./assets/fonts/Roboto/Roboto-Italic.ttf");
+  }
+  @font-face {
+    font-family: "Roboto Medium";
+    src: url("./assets/fonts/Roboto/Roboto-Medium.ttf");
+  }
+  @font-face {
+    font-family: "Roboto Regular";
+    src: url("./assets/fonts/Roboto/Roboto-Regular.ttf");
+  }
+  @font-face {
+    font-family: "Roboto Thin";
+    src: url("./assets/fonts/Roboto/Roboto-Thin.ttf");
+  }
 
-	font-family: "Roboto Regular", sans-serif;
+  font-family: "Roboto Regular", sans-serif;
 
-	input {
-		font-family: inherit;
-	}
+  input {
+    font-family: inherit;
+  }
 
-	&.safari-mod{
-		height: calc(100vh - 115px);
+  &.iOS {
+    height: calc(100vh - 115px);
+  }
 
-		// increase font size for bottom navbar in iPhone 11
-		.tagging-tracker__bottom-navbar {
-			button, a {
-				img {
-					width: 0.9rem;
-					height: 0.9rem;
-				}
+  &.safari-mod {
+    height: calc(100vh - 115px);
 
-				span {
-					font-size: 1.125rem;
-				}
-			}
-		}
+    // increase font size for bottom navbar in iPhone 11
+    .tagging-tracker__bottom-navbar {
+      button, a {
+        img {
+          width: 0.9rem;
+          height: 0.9rem;
+        }
 
-		.tagging-tracker__address-input-modal {
-			p {
-				font-size: 1rem;
-			}
+        span {
+          font-size: 1.125rem;
+        }
+      }
+    }
 
-			input {
-				font-size: 1rem;
-			}
-		}
-	}
+    .tagging-tracker__address-input-modal {
+      p {
+        font-size: 1rem;
+      }
+
+      input {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  // for PWA mode
+  @media all and (display-mode: standalone) {
+    height: 100vh;
+
+    // increase font size for bottom navbar in iPhone 11
+    .tagging-tracker__bottom-navbar {
+      button, a {
+        img {
+          width: 0.9rem;
+          height: 0.9rem;
+        }
+
+        span {
+          font-size: 1.125rem;
+        }
+      }
+    }
+
+    .tagging-tracker__address-input-modal {
+      p {
+        font-size: 1rem;
+      }
+
+      input {
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
 .tagging-tracker__body {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-	flex-direction: column;
-	flex: 1;
-	width: 100%;
-	height: 100%;
-	// max-height: calc(100% - 123px); // TODO: not good set by dynamic css js, useEffect assuming window.innerHeight works
-	overflow-x: hidden;
-	overflow-y: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  // max-height: calc(100% - 123px); // TODO: not good set by dynamic css js, useEffect assuming window.innerHeight works
+  overflow-x: hidden;
+  overflow-y: auto;
 
-	// TODO: this is here because of the state management issues with add-tag
-    // and the image preview/relationship with bottomNavbar(what causes actions)
-    // easier to isolate state within component than to travel up/down eg. through App itself
-    &.increase-height {
-        max-height: calc(100% - 54px);
-	}
-	
-	&.full-body-height {
-		max-height: 100%;
-	}
+  // TODO: this is here because of the state management issues with add-tag
+  // and the image preview/relationship with bottomNavbar(what causes actions)
+  // easier to isolate state within component than to travel up/down eg. through App itself
+  &.increase-height {
+    max-height: calc(100% - 54px);
+  }
+  
+  &.full-body-height {
+    max-height: 100%;
+  }
 
-	&.iOS {
-		@media screen and (max-width: 600px) {
-			max-height: calc(100% - 45px); // 235 alternate // 45px is the bottom navbar
-		}
-	}
+  &.iOS {
+    @media screen and (max-width: 600px) {
+      max-height: calc(100% - 45px); // 235 alternate // 45px is the bottom navbar
+    }
+  }
 
-	&.iOS.less {
-		@media screen and (max-width: 600px) {
-			max-height: calc(100% - 45px); // 235 alternate
-		}
-	}
+  &.iOS.less {
+    @media screen and (max-width: 600px) {
+      max-height: calc(100% - 45px); // 235 alternate
+    }
+  }
 
-	&.iOS.toggled-navbar {
-		@media screen and (max-width: 600px) {
-			max-height: calc(100% - 45px); // 235 alternate
-		}
-	}
+  &.iOS.toggled-navbar {
+    @media screen and (max-width: 600px) {
+      max-height: calc(100% - 45px); // 235 alternate
+    }
+  }
 
-	&.iOS.add-tag {
-		@media screen and (max-width: 600px) {
-			max-height: calc(100% - 45px); // 235 alternate
-		}
-	}
+  &.iOS.add-tag {
+    @media screen and (max-width: 600px) {
+      max-height: calc(100% - 45px); // 235 alternate
+    }
+  }
 }

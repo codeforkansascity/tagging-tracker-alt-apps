@@ -250,7 +250,7 @@ const App = () => {
 	}, [offlineStorage]);
 
 	return (
-		<div className="tagging-tracker">
+		<div className={ `tagging-tracker ${checkIOS(true)}` }>
 			<Router basename={ baseName }>
 				<Route component={ (props) =>
 					<Navbar
