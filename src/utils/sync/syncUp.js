@@ -152,12 +152,12 @@ export const syncUp = async (props) => {
                 ? process.env.REACT_APP_API_BASE_LOCAL
                 : process.env.REACT_APP_API_BASE;
             const postUrl = baseApiPath + '/sync-up';
-            
+
             axios.post(postUrl, {
                 headers: { Authorization: `Bearer ${props.token}` },
                 bundledData
             }).then((res) => {
-                if (res.status === 201) {
+                if (res.status === 200 || res.status === 201) {
                     resolve(true);
                 } else {
                     if (res.status === 403) {
