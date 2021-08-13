@@ -1,16 +1,33 @@
 // this is trying to detect browser by user agent not really great
 // but this particular app has a fixed, bottom navbar which is problematic with Safari
-// since the Safari menu bar overlaps the browser
+// since the Safari bottom menu bar overlaps the browser
 // the Safari menu bar height changes though so the magic number 44px is a best guess pulled from some site
 // initially I saw that when you scroll down the Safari bottom menu goes away/comes back scrolling up
 // but it seems if you don't have overflow/shorter in height then the bottom navbar will be ontop of the Safari bottom menu
 // I guess Mac has this issue too? That's what I see in Sauce Labs simulator
+
+// update on this problem:
+// There are three environments to consider: Chrome, Safari, PWA Standalone in iOS Safari
+// the two related things are the dynamically-added iOS class and CSS feature detection for standalone
+// anyway our primary target is iPhone PWA Standalone anyway with Safari but it would be nice
+// if the app still looks okay in Chrome, you'll notice something is wrong right away if the height
+// is missing 30% of the available viewport
+
 export const checkIOS = (returnString) => {
     const iOS = /(iPhone|iPod|iPhone Simulator|iPod Simulator|iPad|iPad Simulator|Macintosh)/g.test(navigator.userAgent);
+    const isChrome = !!window.chrome;
+
+    console.log('isChrome', isChrome);
 
     if (iOS) {
         if (returnString) {
-            return "iOS";
+            // means Chrome
+            // https://stackoverflow.com/questions/16935955/javascript-to-detect-safari-and-chrome-on-mac
+            if (isChrome) {
+                return "";
+            } else {
+                return "iOS";
+            }
         } else {
             document.querySelector('.tagging-tracker__body').classList = 'tagging-tracker__body'; // clear state
             document.querySelector('.tagging-tracker__bottom-navbar').classList.add('iOS');
