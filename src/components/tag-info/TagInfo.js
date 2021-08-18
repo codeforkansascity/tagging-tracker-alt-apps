@@ -1,7 +1,7 @@
 import React, { createRef, useState, useRef, useEffect } from 'react';
 import './TagInfo.scss';
 
-import { getDateTime, formatTimeStr } from './../../utils/date';
+import { getDateTime, formatTimeStr, nameValueMap } from './../../utils/date';
 import { tagInfoFields } from './../../utils/tagFields';
 import { addNewTagInfo, addNewEvent, updateTagInfoEventId } from './../events/eventUtils';
 

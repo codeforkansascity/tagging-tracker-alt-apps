@@ -73,7 +73,7 @@ export const tagInfoFields = {
             wood: "Wood",
             glass: "Glass",
             painted: "Painted",
-            others: "other"
+            other: "other"
         }
     },
     "Surface other:": {
@@ -86,7 +86,7 @@ export const tagInfoFields = {
             weeds: "Weeds",
             trash: "Trash",
             illegalDumping: "Illegal dumping",
-            others: "other"
+            other: "other"
         }
     },
     "Other code enforcement:": {
