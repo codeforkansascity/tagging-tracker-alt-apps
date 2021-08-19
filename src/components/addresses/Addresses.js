@@ -232,7 +232,7 @@ const Addresses = (props) => {
     }
 
     const getAddressPdf = (addressName) => {
-        const isDev = window.location.href.indexOf('localhost') === -1; // should just have global prop
+        const isDev = window.location.href.indexOf('localhost') !== -1; // should just have global prop
         const pdfPath = isDev ? process.env.REACT_APP_API_PDF_ROUTE_LOCAL : process.env.REACT_APP_API_PDF_ROUTE;
 
         setPdfClickable(prevState => ({
