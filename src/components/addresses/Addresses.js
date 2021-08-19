@@ -270,7 +270,7 @@ const Addresses = (props) => {
             })
             .catch((error) => {
                 console.log('pdf download err', error);
-                if (error.response.status === 403) {
+                if (error?.response?.status === 403) {
                     alert('Please login');
                 } else {
                     alert('PDF failed to download');
