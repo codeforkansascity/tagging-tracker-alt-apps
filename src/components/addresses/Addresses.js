@@ -14,6 +14,7 @@ const Addresses = (props) => {
     const [recentAddresses] = useState([]); // what is the difference between this and activeAddresses
     const [activeAddresses, setActiveAddresses] = useState(null);
     const [revGeocodedAdresses, setRevGeocodedAddresses] = useState(null);
+    const [pdfClickable, setPdfClickable] = useState({});
     const { token } = props;
     let autoComplete;
     
@@ -230,21 +231,81 @@ const Addresses = (props) => {
         ) : null;
     }
 
+    const getAddressPdf = (addressName) => {
+        const isDev = window.location.href.indexOf('localhost') === -1; // should just have global prop
+        const pdfPath = isDev ? process.env.REACT_APP_API_PDF_ROUTE_LOCAL : process.env.REACT_APP_API_PDF_ROUTE;
+
+        setPdfClickable(prevState => ({
+            ...prevState,
+            [addressName]: false,
+        }));
+
+        axios.get(pdfPath, {
+            params: {
+                address: addressName,
+                token: props.token,
+            },
+            responseType: 'blob',
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    // ehh this is not how this was supposed to work, made it with a GET request but later realized will use POST
+                    // also viewing in app vs. viewing generator link directly
+                    // https://stackoverflow.com/a/56660805
+                    const data = new Blob([response.data]);
+                    const blob = data;
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = `Tagging Tracker - ${addressName}.pdf`;
+                    document.body.appendChild(link);
+                    link.click(); // create an <a> element and simulate the click operation.
+                    link.remove();
+                } else if (response.status === 403) {
+                    alert('Please login');
+                }
+                else {
+                    alert('PDF failed to download');
+                }
+            })
+            .catch((error) => {
+                console.log('pdf download err', error);
+                alert('PDF failed to download');
+            })
+            .finally(() => {
+                setPdfClickable(prevState => ({
+                    ...prevState,
+                    [addressName]: true,
+                }));
+            });
+    }
+
+    const pdfIcon = (addressName) => (
+        <div
+            className={`tagging-tracker__address-pdf-icon ${(!(addressName in pdfClickable) || pdfClickable[addressName]) ? '' : 'in-progress'}`}
+            onClick={() => { getAddressPdf(addressName); }}
+        >
+            <span>PDF</span>
+        </div>
+    )
+
     const renderActiveAddresses = () => {
         if (!activeAddresses) {
             return "";
         } else {
             return (activeAddresses.map((address, index) => {
-                return <Link
-                    key={index}
-                    to={{ pathname: "/events", state: {
-                            address: address.address,
-                            addressId: address.addressId // used for lookup
-                    }}}
-                    className="tagging-tracker__address">
-                        <h4>{ address.address }</h4>
-                        <img src={ rightArrow } alt="right arrow" />
-                </Link>}));
+                return <div className="tagging-tracker__address-wrapper">
+                    { pdfIcon(address.address) }
+                    <Link
+                        key={index}
+                        to={{ pathname: "/events", state: {
+                                address: address.address,
+                                addressId: address.addressId // used for lookup
+                        }}}
+                        className="tagging-tracker__address">
+                            <h4>{ address.address }</h4>
+                            <img src={ rightArrow } alt="right arrow" />
+                    </Link>
+                </div>}));
         }
     }
 

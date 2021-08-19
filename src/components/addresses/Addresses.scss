@@ -7,18 +7,48 @@
     width: 100%;
 }
 
+.tagging-tracker__address-wrapper {
+    @include flex-hor-row-ali-str;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 1rem;
+    border-bottom: 1px solid #F3F3F5;
+}
+
+.tagging-tracker__address-pdf-icon {
+    @include flex-center;
+    flex: 0;
+    border: 1px solid #383838;
+    margin: 0.25rem;
+
+    span {
+        font-size: 0.5rem;
+        background-color: red;
+        color: white;
+        width: 100%;
+        padding: 0.125rem 0.25rem;
+        font-weight: bold;
+    }
+
+    &.in-progress {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
 .tagging-tracker__address {
     @include flex-hor-row-ali-str;
     justify-content: flex-start;
+    flex: 1;
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid #F3F3F5;
+    padding-left: 0.5rem;
     text-decoration: none;
     color: #282828;
 
     h4 {
         @include flex-left;
         font-size: 1rem;
-        flex: 1;
+        width: 100%;
     }
 
     img {
