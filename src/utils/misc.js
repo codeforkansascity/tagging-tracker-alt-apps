@@ -82,7 +82,7 @@ export const truncateText = (text, length, ellipsis) => {
 
 export const downloadSpreadsheet = (props, setSpreadsheetDownloading) => {
     setSpreadsheetDownloading(true);
-    const spreadsheetPath = window.location.indexOf('local') !== -1
+    const spreadsheetPath = window.location.href.indexOf('local') !== -1
         ? process.env.REACT_APP_API_SPREADSHEET_ROUTE_LOCAL
         : process.env.REACT_APP_API_SPREADSHEET_ROUTE;
 
