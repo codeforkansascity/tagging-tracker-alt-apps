@@ -111,7 +111,11 @@ export const downloadSpreadsheet = (props, setSpreadsheetDownloading) => {
         })
         .catch((error) => {
             console.log('pdf download err', error);
-            alert('Spreadsheet failed to download');
+            if (error.response.status === 403) {
+                alert('Please login');
+            } else {
+                alert('Spreadsheet failed to download');
+            }
         })
         .finally(() => {
             setSpreadsheetDownloading(false);

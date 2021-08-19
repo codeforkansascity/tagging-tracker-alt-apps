@@ -248,6 +248,7 @@ const Addresses = (props) => {
             responseType: 'blob',
         })
             .then((response) => {
+                console.log(response);
                 if (response.status === 200) {
                     // ehh this is not how this was supposed to work, made it with a GET request but later realized will use POST
                     // also viewing in app vs. viewing generator link directly
@@ -269,7 +270,11 @@ const Addresses = (props) => {
             })
             .catch((error) => {
                 console.log('pdf download err', error);
-                alert('PDF failed to download');
+                if (error.response.status === 403) {
+                    alert('Please login');
+                } else {
+                    alert('PDF failed to download');
+                }
             })
             .finally(() => {
                 setPdfClickable(prevState => ({
