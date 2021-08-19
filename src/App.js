@@ -269,7 +269,8 @@ const App = () => {
 						setDeletedAddresses={setDeletedAddresses}
 						offlineStorage={offlineStorage}
 						deleteEventsMode={deleteEventsMode}
-						setDeleteEventsMode={setDeleteEventsMode} />
+						setDeleteEventsMode={setDeleteEventsMode}
+						token={token} />
 				}/> {/* put this break here since it confused me having it against the line before */}
 				<div className={ `${bodyClass} ${checkIOS(true)}` }>
 					<Switch>

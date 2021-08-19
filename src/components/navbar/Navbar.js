@@ -4,13 +4,14 @@ import './Navbar.scss';
 import { deleteAddress } from '../../utils/delete';
 
 import backArrow from './../../assets/icons/svgs/chevron-blue.svg'; // rotated by CSS
-import { truncateText } from '../../utils/misc';
+import { truncateText, downloadSpreadsheet } from '../../utils/misc';
 
 const Navbar = (props) => {
     const searchAddressInput = useRef(null);
     const history = useHistory();
     const [showSettings, setShowSettings] = useState(false);
     const [deletingAddress, setDeletingAddress] = useState(false);
+    const [spreadsheetDownloading, setSpreadsheetDownloading] = useState(false);
 
     const searchAddresses = (searchStr) => {
         props.searchAddress(searchStr);
@@ -188,7 +189,10 @@ const Navbar = (props) => {
         }
 
         return <div className="navbar-top__settings-menu">
-            <button onClick={ props.updateSoftware } type="button">Update Software</button>{/* LOL */}
+            <div onClick={() => { downloadSpreadsheet(props, setSpreadsheetDownloading); }} className={`navbar-top__settings-menu-xlsx ${spreadsheetDownloading ? 'processing' : ''}`}>
+                Download <span>spreadsheet</span>
+            </div>
+            <button type="button" onClick={ props.updateSoftware }>Update Software</button>{/* LOL */}
         </div>;
     }
 

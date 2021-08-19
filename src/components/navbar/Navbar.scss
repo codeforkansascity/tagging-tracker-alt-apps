@@ -45,13 +45,31 @@
         top: 100%;
         right: 0;
         width: auto;
-        max-width: 200px;
         display: block;
         overflow-x: hidden;
         overflow-y: auto;
+        background-color: white;
+        padding: 0.5rem;
+        border: 1px solid #383838;
 
         button {
             white-space: nowrap;
+            margin-top: 0.5rem;
+        }
+    }
+
+    .navbar-top__settings-menu-xlsx {
+        text-align: left;
+        font-size: 0.75rem;
+        white-space: nowrap;
+
+        &.processing {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        span {
+            color: green;
         }
     }
 }

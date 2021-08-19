@@ -12,6 +12,7 @@
 // anyway our primary target is iPhone PWA Standalone anyway with Safari but it would be nice
 // if the app still looks okay in Chrome, you'll notice something is wrong right away if the height
 // is missing 30% of the available viewport
+import axios from 'axios';
 
 export const checkIOS = (returnString) => {
     const iOS = /(iPhone|iPod|iPhone Simulator|iPod Simulator|iPad|iPad Simulator|Macintosh)/g.test(navigator.userAgent);
@@ -77,4 +78,42 @@ export const truncateText = (text, length, ellipsis) => {
     }
 
     return text.substr(0, length) + ((ellipsis && text.length > length) ? '...' : '');
+}
+
+export const downloadSpreadsheet = (props, setSpreadsheetDownloading) => {
+    setSpreadsheetDownloading(true);
+    const spreadsheetPath = process.env.NODE_ENV === 'dev'
+        ? process.env.REACT_APP_API_SPREADSHEET_ROUTE_LOCAL
+        : process.env.REACT_APP_API_SPREADSHEET_ROUTE;
+
+    axios.get(spreadsheetPath, {
+        params: {
+            token: props.token,
+        },
+        responseType: 'blob',
+    })
+        .then((response) => {
+            if (response.status === 200) {
+                const data = new Blob([response.data]);
+                const blob = data;
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = `Tagging Tracker Event Data.xlsx`;
+                document.body.appendChild(link);
+                link.click(); // create an <a> element and simulate the click operation.
+                link.remove();
+            } else if (response.status === 403) {
+                alert('Please login');
+            }
+            else {
+                alert('Spreadsheet failed to download');
+            }
+        })
+        .catch((error) => {
+            console.log('pdf download err', error);
+            alert('Spreadsheet failed to download');
+        })
+        .finally(() => {
+            setSpreadsheetDownloading(false);
+        });
 }
