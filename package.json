@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "dexie": "^2.0.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "npx": "^10.2.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
